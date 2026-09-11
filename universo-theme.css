@@ -190,11 +190,13 @@ a {
   align-items: center;
   gap: 0.85rem;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .brand-logo-img {
-  height: 46px;
+  height: 52px;
   width: auto;
+  max-width: 170px;
   object-fit: contain;
   display: block;
 }
@@ -308,21 +310,32 @@ a {
   position: relative;
   /* Background fotográfico de escritório/logística com shader degradê fader para legibilidade */
   background: 
-    linear-gradient(90deg, rgba(14, 15, 17, 0.94) 0%, rgba(18, 20, 24, 0.88) 50%, rgba(24, 26, 30, 0.72) 100%),
+    linear-gradient(90deg, rgba(14, 15, 17, 0.94) 0%, rgba(18, 20, 24, 0.88) 45%, rgba(24, 26, 30, 0.76) 100%),
     url('assets/images/hero_office_warehouse.jpg') center center / cover no-repeat;
   color: #FFFFFF;
   padding: 3.5rem 0 3.25rem;
   border-bottom: 1px solid var(--border-subtle);
   overflow: hidden;
+  width: 100%;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   align-items: center;
   gap: 2.5rem;
   position: relative;
   z-index: 1;
+  width: 100%;
+}
+
+.hero-content {
+  min-width: 0;
+}
+
+.hero-offers-container {
+  min-width: 0;
+  width: 100%;
 }
 
 .hero-badge-tag {
@@ -1678,7 +1691,7 @@ a {
 .whatsapp-float-btn {
   position: fixed;
   bottom: 24px;
-  left: 24px;
+  right: 24px;
   z-index: 85;
   background: var(--color-whatsapp);
   color: #FFFFFF;
@@ -1697,105 +1710,326 @@ a {
 }
 
 /* ==========================================================================
-   RESPONSIVIDADE & MOBILE-FIRST OPTIMIZATION
+   RESPONSIVIDADE COMPLETA: TODOS OS BREAKPOINTS (DESKTOP, TABLET, MOBILE)
    ========================================================================== */
+
+/* Breakpoint 1: Telas Médias / Laptops Compactos (<= 1100px) */
+@media (max-width: 1100px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 1.75rem;
+  }
+  .hero-title {
+    font-size: 2.35rem;
+  }
+  .header-search {
+    max-width: 360px;
+  }
+  .trust-grid {
+    gap: 1rem;
+  }
+}
+
+/* Breakpoint 2: Tablets em Paisagem e Laptops Pequenos (<= 992px) */
 @media (max-width: 992px) {
+  .hero-section {
+    padding: 2.75rem 0 2.5rem;
+    background: 
+      linear-gradient(180deg, rgba(14, 15, 17, 0.96) 0%, rgba(18, 20, 24, 0.92) 50%, rgba(24, 26, 30, 0.88) 100%),
+      url('assets/images/hero_office_warehouse.jpg') center center / cover no-repeat;
+  }
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.25rem;
+  }
+  .hero-content {
+    max-width: 680px;
+  }
+  .hero-subtitle {
+    max-width: 100%;
+  }
+  .hero-offers-container {
+    max-width: 620px;
   }
   .trust-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
   .quick-quote-box {
     grid-template-columns: 1fr;
-    padding: 1.75rem;
+    padding: 2rem;
   }
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 640px) {
+/* Breakpoint 3: Tablets em Retrato (<= 768px) */
+@media (max-width: 768px) {
+  .top-bar {
+    padding: 0.4rem 0;
+  }
   .top-bar-features {
     display: none;
   }
   .top-bar-inner {
     justify-content: center;
+    font-size: 0.76rem;
+  }
+  .header-inner {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+  }
+  .brand-logo-img {
+    height: 40px;
   }
   .header-search {
     order: 3;
     width: 100%;
     max-width: 100%;
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
   }
-  .header-inner {
-    flex-wrap: wrap;
-    gap: 0.75rem;
+  .header-actions {
+    gap: 0.5rem;
   }
-  .brand-logo-img {
-    height: 38px;
+  .btn-upload-list {
+    display: none; /* No mobile/tablet acessível via Hero CTA */
   }
-  .trust-grid {
-    grid-template-columns: 1fr;
+  .btn-cart-trigger span:first-of-type {
+    display: none;
+  }
+  .btn-cart-trigger {
+    padding: 0.55rem 0.85rem;
   }
   .hero-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .btn-primary-glow,
+  .btn-secondary-glass {
+    justify-content: center;
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+  }
+  .hero-highlights {
+    gap: 0.85rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+  .whatsapp-float-btn {
+    bottom: 18px;
+    right: 18px;
+    width: 48px;
+    height: 48px;
+  }
+  .whatsapp-float-btn svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* Breakpoint 4: Mobile Smartphones (<= 640px) */
+@media (max-width: 640px) {
+  .container {
+    padding-inline: 1rem;
+  }
+  .hero-section {
+    padding: 2rem 0 2.25rem;
+  }
+  .hero-badge-tag {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.65rem;
+    margin-bottom: 0.85rem;
+  }
+  .hero-title {
+    font-size: 1.75rem;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
   }
   .hero-subtitle {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.35rem;
+  }
+  .hero-offers-container {
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+  }
+  .offers-header {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.6rem;
+  }
+  .offers-header-title {
+    font-size: 0.84rem;
+  }
+  .badge-offer-tag {
+    font-size: 0.64rem;
+    padding: 0.15rem 0.45rem;
   }
   .offer-card-body {
-    grid-template-columns: 85px 1fr;
+    grid-template-columns: 80px 1fr;
     gap: 0.75rem;
     padding: 0.75rem;
   }
   .offer-img-box {
-    width: 85px;
-    height: 85px;
+    width: 80px;
+    height: 80px;
+    padding: 4px;
+  }
+  .offer-stock-badge {
+    font-size: 0.68rem;
+    margin-bottom: 0.15rem;
   }
   .offer-title {
-    font-size: 0.86rem;
+    font-size: 0.84rem;
+    line-height: 1.25;
+    margin-bottom: 0.25rem;
+  }
+  .offer-condition {
+    font-size: 0.72rem;
+    margin-bottom: 0.4rem;
   }
   .offer-price-val {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+  }
+  .offer-price-unit {
+    font-size: 0.68rem;
+  }
+  .offer-actions-row {
+    margin-top: 0.65rem;
+    gap: 0.5rem;
+  }
+  .btn-add-offer-cart {
+    font-size: 0.75rem;
+    padding: 0.45rem 0.75rem;
+    flex: 1;
+    justify-content: center;
+  }
+  .btn-carousel-nav {
+    width: 28px;
+    height: 28px;
+  }
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+  .trust-card {
+    gap: 0.65rem;
+  }
+  .trust-icon-box {
+    width: 36px;
+    height: 36px;
+  }
+  .trust-icon-box svg {
+    width: 18px;
+    height: 18px;
+  }
+  .trust-text h5 {
+    font-size: 0.82rem;
+  }
+  .trust-text p {
+    font-size: 0.72rem;
+  }
+  .categories-nav-section {
+    top: 55px;
+    padding: 1.25rem 0 0.75rem;
+  }
+  .category-tab-btn {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.78rem;
   }
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+    gap: 0.65rem;
   }
   .product-thumb-box {
-    height: 130px;
-    padding: 0.65rem;
+    height: 125px;
+    padding: 0.5rem;
   }
   .product-content {
-    padding: 0.75rem;
+    padding: 0.65rem;
   }
   .product-title {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
+    line-height: 1.25;
+    margin-bottom: 0.25rem;
   }
   .product-desc {
-    display: none; /* No mobile simplifica para foco comercial */
+    display: none; /* Simplificado no mobile para agilidade comercial */
   }
   .product-package-tag {
-    font-size: 0.68rem;
-    margin-bottom: 0.65rem;
+    font-size: 0.65rem;
+    margin-bottom: 0.55rem;
   }
   .btn-open-options {
-    padding: 0.45rem 0.65rem;
-    font-size: 0.75rem;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.74rem;
+  }
+  .cart-drawer {
+    width: 100%;
+    max-width: 100%;
   }
   .modal-card {
+    width: 96%;
     max-height: 94vh;
     border-radius: var(--radius-lg);
   }
   .modal-body {
-    padding: 1rem;
+    padding: 0.85rem;
+    gap: 1rem;
   }
-  .cart-drawer {
-    max-width: 100%;
+  .modal-product-header {
+    gap: 0.75rem;
+  }
+  .modal-thumb {
+    width: 70px;
+    height: 70px;
+  }
+  .modal-title {
+    font-size: 0.95rem;
   }
   .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
+
+/* Breakpoint 5: Smartphones Compactos (<= 380px) */
+@media (max-width: 380px) {
+  .hero-title {
+    font-size: 1.55rem;
+  }
+  .offer-card-body {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .offer-img-box {
+    margin: 0 auto;
+  }
+  .offer-details {
+    align-items: center;
+  }
+  .offer-actions-row {
+    width: 100%;
+  }
+  .products-grid {
     grid-template-columns: 1fr;
   }
 }
