@@ -223,11 +223,17 @@ a {
   display: block;
 }
 
-/* Search Bar */
-.header-search {
-  flex: 1;
-  max-width: 480px;
-  position: relative;
+/* ==========================================================================
+   BARRA DE BUSCA DO CATÁLOGO (FORA DO CABEÇALHO)
+   ========================================================================== */
+.catalog-search-section {
+  padding: 1.5rem 0 0.5rem;
+  background: var(--bg-body);
+}
+
+.catalog-search-card {
+  max-width: 740px;
+  margin: 0 auto;
 }
 
 .search-input-wrapper {
@@ -235,31 +241,40 @@ a {
   width: 100%;
 }
 
-.search-input-wrapper input {
+.catalog-search-card .search-input-wrapper input {
   width: 100%;
-  background: var(--gray-100);
-  border: 1px solid var(--border-subtle);
-  padding: 0.65rem 1rem 0.65rem 2.6rem;
+  height: 52px;
+  background: #FFFFFF;
+  border: 1.5px solid var(--border-subtle);
+  padding: 0.75rem 1.25rem 0.75rem 3.2rem;
   border-radius: var(--radius-pill);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   outline: none;
   transition: all var(--transition-fast);
   color: var(--text-main);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
-.search-input-wrapper input:focus {
+.catalog-search-card .search-input-wrapper input:focus {
   background: #FFFFFF;
-  border-color: var(--gray-700);
-  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.12);
 }
 
-.search-icon {
+.catalog-search-card .search-input-wrapper input::placeholder {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.catalog-search-card .search-icon {
   position: absolute;
-  left: 0.9rem;
+  left: 1.15rem;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--gray-600);
+  color: var(--color-accent);
   pointer-events: none;
+  width: 20px;
+  height: 20px;
 }
 
 /* Header Actions */
@@ -1637,11 +1652,12 @@ a {
   color: #6B7280;
 }
 
-/* Grid de Botões (Pills) para Forma de Pagamento em Azul Oficial */
+/* Grid de Botões (Pills) para Forma de Pagamento em 3 Colunas Lado a Lado */
 .payment-pills-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.45rem;
+  width: 100%;
 }
 
 .btn-payment-pill {
@@ -1649,22 +1665,43 @@ a {
   background: #1E2024;
   color: #9CA3AF;
   border: 1.5px solid #2D3139;
-  padding: 0.6rem 0.85rem;
+  padding: 0.65rem 0.35rem;
   border-radius: var(--radius-md);
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   font-weight: 600;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.6rem;
+  justify-content: center;
+  gap: 0.35rem;
   cursor: pointer;
   transition: all var(--transition-fast);
-  text-align: left;
+  text-align: center;
+  min-height: 64px;
+}
+
+.btn-payment-pill span {
+  line-height: 1.2;
+  display: block;
+  font-size: 0.74rem;
+}
+
+.btn-payment-pill svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: #9CA3AF;
+  transition: color var(--transition-fast);
 }
 
 .btn-payment-pill:hover {
   background: #25282E;
   color: #FFFFFF;
   border-color: #4B5563;
+}
+
+.btn-payment-pill:hover svg {
+  color: #FFFFFF;
 }
 
 .btn-payment-pill.active {
@@ -1924,20 +1961,12 @@ a {
     height: 36px;
     max-width: 130px;
   }
-  .header-search {
-    flex: 1;
-    min-width: 0;
-    margin-top: 0;
+  .catalog-search-section {
+    padding: 1.25rem 0 0.4rem;
   }
-  .search-input-wrapper input {
-    height: 38px;
-    padding: 0.5rem 0.85rem 0.5rem 2.25rem;
-    font-size: 0.84rem;
-  }
-  .search-icon {
-    left: 0.75rem;
-    width: 16px;
-    height: 16px;
+  .catalog-search-card .search-input-wrapper input {
+    height: 48px;
+    font-size: 0.9rem;
   }
   .header-actions {
     gap: 0.5rem;
@@ -1950,9 +1979,6 @@ a {
     padding: 0.5rem 0.85rem;
     height: 38px;
     gap: 0.45rem;
-  }
-  .btn-cart-trigger span:first-of-type {
-    display: none;
   }
 
   /* Sticky Categories alinhado abaixo do Header */
@@ -2048,44 +2074,42 @@ a {
     z-index: 100;
   }
   .header-inner {
-    padding: 0.4rem 0;
-    gap: 0.45rem;
+    padding: 0.45rem 0;
+    gap: 0.75rem;
     flex-wrap: nowrap;
+    justify-content: space-between;
   }
   .brand-logo-img {
-    height: 30px;
+    height: 32px;
     width: auto;
-    max-width: 90px;
+    max-width: 120px;
   }
-  .header-search {
-    flex: 1;
-    min-width: 0;
+  .catalog-search-section {
+    padding: 0.85rem 0 0.35rem;
   }
-  .search-input-wrapper input {
-    height: 35px;
-    padding: 0.4rem 0.65rem 0.4rem 2rem;
+  .catalog-search-card .search-input-wrapper input {
+    height: 46px;
+    padding: 0.5rem 0.85rem 0.5rem 2.5rem;
     font-size: 16px !important; /* Previne auto-zoom no iOS */
     border-radius: var(--radius-pill);
   }
-  .search-input-wrapper input::placeholder {
-    font-size: 0.78rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .catalog-search-card .search-input-wrapper input::placeholder {
+    font-size: 0.82rem;
   }
-  .search-icon {
-    left: 0.65rem;
-    width: 14px;
-    height: 14px;
+  .catalog-search-card .search-icon {
+    left: 0.85rem;
+    width: 17px;
+    height: 17px;
   }
   .header-actions {
-    gap: 0.35rem;
+    gap: 0.4rem;
   }
   .btn-cart-trigger {
-    height: 35px;
-    padding: 0.4rem 0.65rem;
-    gap: 0.35rem;
+    height: 36px;
+    padding: 0.4rem 0.75rem;
+    gap: 0.4rem;
     border-radius: var(--radius-sm);
+    font-size: 0.82rem;
   }
   .cart-badge {
     min-width: 18px;
@@ -2474,17 +2498,22 @@ a {
     font-size: 16px !important; /* Previne auto-zoom no iOS */
   }
   .payment-pills-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.4rem;
-  }
-  .btn-payment-pill {
-    padding: 0.45rem 0.5rem;
-    font-size: 0.72rem;
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.35rem;
   }
+  .btn-payment-pill {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.68rem;
+    gap: 0.25rem;
+    min-height: 58px;
+  }
+  .btn-payment-pill span {
+    font-size: 0.67rem;
+    line-height: 1.15;
+  }
   .btn-payment-pill svg {
-    width: 13px;
-    height: 13px;
+    width: 15px;
+    height: 15px;
     flex-shrink: 0;
   }
   .btn-checkout-whatsapp {
@@ -2636,6 +2665,21 @@ a {
     font-size: 0.72rem;
   }
   .payment-pills-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.25rem;
+  }
+  .btn-payment-pill {
+    padding: 0.45rem 0.15rem;
+    font-size: 0.62rem;
+    gap: 0.2rem;
+    min-height: 54px;
+  }
+  .btn-payment-pill span {
+    font-size: 0.62rem;
+    line-height: 1.1;
+  }
+  .btn-payment-pill svg {
+    width: 13px;
+    height: 13px;
   }
 }
