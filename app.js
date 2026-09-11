@@ -242,11 +242,13 @@
     }
 
     modalOverlay.classList.add('open');
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
   }
 
   function closeProductModal() {
     modalOverlay.classList.remove('open');
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
     currentProductForOptions = null;
   }
@@ -370,12 +372,14 @@
   function openCartDrawer() {
     cartDrawer.classList.add('open');
     cartOverlay.classList.add('open');
+    document.body.classList.add('cart-open');
     document.body.style.overflow = 'hidden';
   }
 
   function closeCartDrawer() {
     cartDrawer.classList.remove('open');
     cartOverlay.classList.remove('open');
+    document.body.classList.remove('cart-open');
     document.body.style.overflow = '';
   }
 
@@ -527,6 +531,34 @@
     carouselContainer.addEventListener('mouseleave', () => {
       startOfferAutoplay();
     });
+
+    // Suporte a gestos touch swipe no Mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carouselContainer.addEventListener('touchstart', (e) => {
+      if (e.changedTouches && e.changedTouches.length > 0) {
+        touchStartX = e.changedTouches[0].screenX;
+      }
+      if (offerAutoplayTimer) clearInterval(offerAutoplayTimer);
+    }, { passive: true });
+
+    carouselContainer.addEventListener('touchend', (e) => {
+      if (e.changedTouches && e.changedTouches.length > 0) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }
+      startOfferAutoplay();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const swipeThreshold = 40;
+      if (touchEndX < touchStartX - swipeThreshold) {
+        nextOfferSlide();
+      } else if (touchEndX > touchStartX + swipeThreshold) {
+        prevOfferSlide();
+      }
+    }
 
     startOfferAutoplay();
   }
