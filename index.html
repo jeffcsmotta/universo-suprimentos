@@ -592,12 +592,22 @@
       </div>
 
       <div class="cart-form-group">
-        <label for="select-payment">Previsão de Pagamento</label>
-        <select id="select-payment">
-          <option value="Boleto Faturado a Prazo (PJ)">Boleto Faturado a Prazo (PJ)</option>
-          <option value="PIX com Desconto">PIX à Vista (com Desconto)</option>
-          <option value="Cartão de Crédito Corporativo">Cartão de Crédito Corporativo</option>
-        </select>
+        <label>Forma de Pagamento Pretendida</label>
+        <div class="payment-pills-grid" id="payment-pills-group">
+          <button type="button" class="btn-payment-pill active" data-value="Boleto Faturado a Prazo (PJ)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            <span>Boleto PJ a Prazo</span>
+          </button>
+          <button type="button" class="btn-payment-pill" data-value="PIX com Desconto">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            <span>PIX c/ Desconto</span>
+          </button>
+          <button type="button" class="btn-payment-pill" data-value="Cartão Corporativo">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+            <span>Cartão Corporativo</span>
+          </button>
+        </div>
+        <input type="hidden" id="selected-payment-val" value="Boleto Faturado a Prazo (PJ)">
       </div>
 
       <button type="button" class="btn-checkout-whatsapp" id="btn-checkout-whatsapp">

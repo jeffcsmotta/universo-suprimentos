@@ -388,31 +388,39 @@
 
     const companyName = document.getElementById('input-company').value.trim();
     const contactPerson = document.getElementById('input-name').value.trim();
-    const city = document.getElementById('input-city').value.trim() || 'Região da Serra Gaúcha';
-    const paymentPref = document.getElementById('select-payment').value;
+    const city = document.getElementById('input-city').value.trim() || 'Caxias do Sul / Serra Gaúcha';
+    const paymentPref = document.getElementById('selected-payment-val') ? document.getElementById('selected-payment-val').value : 'Boleto Faturado a Prazo (PJ)';
 
-    let message = `🏢 *SOLICITAÇÃO DE COTAÇÃO CORPORATIVA — UNIVERSO*\n\n`;
+    // Mensagem Limpa, Direta e Elegante (Padrão Executivo B2B Onira)
+    let message = `*SOLICITAÇÃO DE COTAÇÃO B2B • UNIVERSO SUPRIMENTOS*\n`;
+    message += `────────────────────────────\n\n`;
 
-    if (companyName) message += `*Empresa:* ${companyName}\n`;
-    if (contactPerson) message += `*Responsável:* ${contactPerson}\n`;
-    message += `*Local de Entrega:* ${city}\n`;
-    message += `*Condição Pretendida:* ${paymentPref}\n\n`;
+    // Dados do Solicitante
+    message += `🏢 *DADOS DA EMPRESA*\n`;
+    if (companyName) message += `• *Empresa:* ${companyName}\n`;
+    if (contactPerson) message += `• *Contato:* ${contactPerson}\n`;
+    message += `• *Entrega:* ${city}\n`;
+    message += `• *Condição:* ${paymentPref}\n\n`;
 
-    message += `📦 *ITENS DA COTAÇÃO:*\n`;
+    // Lista de Itens Formatada
+    message += `📦 *ITENS SELECIONADOS (${cart.reduce((s, i) => s + i.quantity, 0)} unids)*\n`;
     cart.forEach((item, index) => {
-      message += `\n${index + 1}. *${item.name}*\n`;
-      message += `   ↳ Quantidade: *${item.quantity}*\n`;
+      message += `\n*${index + 1}. ${item.name}*\n`;
+      message += `   ▫️ *Qtd:* ${item.quantity} ${item.package ? `(${item.package})` : ''}\n`;
+      
       if (item.options && item.options.length) {
         item.options.forEach(opt => {
-          message += `   ↳ ${opt}\n`;
+          message += `   ▫️ ${opt}\n`;
         });
       }
       if (item.obs) {
-        message += `   ↳ Obs: _${item.obs}_\n`;
+        message += `   ▫️ _Obs: ${item.obs}_\n`;
       }
     });
 
-    message += `\n💬 _Olá time Universo! Gostaria de receber a cotação com as melhores condições e prazo de entrega faturado para PJ._`;
+    message += `\n────────────────────────────\n`;
+    message += `💬 *A/C Equipe Comercial Universo:*\n`;
+    message += `Favor retornar com a melhor proposta comercial, prazo de entrega e condições de faturamento PJ. Obrigado!`;
 
     const encodedMsg = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMsg}`;
@@ -588,6 +596,19 @@
     // Cotação
     btnCheckoutWhatsapp.addEventListener('click', checkoutWhatsapp);
     btnSendQuickList.addEventListener('click', sendQuickList);
+
+    // Seleção de Forma de Pagamento por Botões (Pills)
+    const paymentPills = document.querySelectorAll('.btn-payment-pill');
+    const hiddenPaymentInput = document.getElementById('selected-payment-val');
+    paymentPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        paymentPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        if (hiddenPaymentInput) {
+          hiddenPaymentInput.value = pill.dataset.value;
+        }
+      });
+    });
 
     if (btnHeaderUpload) {
       btnHeaderUpload.addEventListener('click', () => {
