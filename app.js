@@ -457,6 +457,108 @@
     }
   }
 
+  // ==========================================================================
+  // CARROSSEL DE OFERTAS DA HERO
+  // ==========================================================================
+  let currentOfferSlide = 0;
+  const totalOfferSlides = 3;
+  let offerAutoplayTimer = null;
+
+  function updateOfferCarouselUI() {
+    const track = document.getElementById('offers-track');
+    const dotsContainer = document.getElementById('offers-dots');
+    if (!track) return;
+
+    track.style.transform = `translateX(-${currentOfferSlide * 100}%)`;
+
+    if (dotsContainer) {
+      const dots = dotsContainer.querySelectorAll('.carousel-dot');
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentOfferSlide);
+      });
+    }
+  }
+
+  function nextOfferSlide() {
+    currentOfferSlide = (currentOfferSlide + 1) % totalOfferSlides;
+    updateOfferCarouselUI();
+  }
+
+  function prevOfferSlide() {
+    currentOfferSlide = (currentOfferSlide - 1 + totalOfferSlides) % totalOfferSlides;
+    updateOfferCarouselUI();
+  }
+
+  function goToOfferSlide(index) {
+    if (index >= 0 && index < totalOfferSlides) {
+      currentOfferSlide = index;
+      updateOfferCarouselUI();
+      resetOfferAutoplay();
+    }
+  }
+
+  function startOfferAutoplay() {
+    if (offerAutoplayTimer) clearInterval(offerAutoplayTimer);
+    offerAutoplayTimer = setInterval(() => {
+      nextOfferSlide();
+    }, 5500);
+  }
+
+  function resetOfferAutoplay() {
+    startOfferAutoplay();
+  }
+
+  function setupOfferCarousel() {
+    const carouselContainer = document.getElementById('hero-offers-carousel');
+    if (!carouselContainer) return;
+
+    carouselContainer.addEventListener('mouseenter', () => {
+      if (offerAutoplayTimer) clearInterval(offerAutoplayTimer);
+    });
+
+    carouselContainer.addEventListener('mouseleave', () => {
+      startOfferAutoplay();
+    });
+
+    startOfferAutoplay();
+  }
+
+  // Adicionar oferta direta da Hero ao carrinho
+  function addDirectOffer(productId, packageOption, detailOption, qty, price) {
+    const product = allProducts.find(p => p.id === productId);
+    const productName = product ? product.name : 'Item Oferta Especial';
+    const productImage = product ? product.image : 'assets/images/produtos/folhas_report_a4.jpg';
+
+    const optionsArray = [
+      `Embalagem: ${packageOption}`,
+      `Especificação: ${detailOption}`,
+      `Oferta Especial B2B: R$ ${price.toFixed(2).replace('.', ',')}`
+    ];
+
+    const cartItemId = `${productId}_offer_${packageOption.replace(/\s+/g, '_')}`;
+    const existingIndex = cart.findIndex(item => item.cartItemId === cartItemId);
+
+    if (existingIndex > -1) {
+      cart[existingIndex].quantity += qty;
+    } else {
+      cart.push({
+        cartItemId,
+        productId,
+        name: productName,
+        package: packageOption,
+        image: productImage,
+        quantity: qty,
+        options: optionsArray,
+        obs: 'Preço promocional acordado na Vitrine de Ofertas Hero'
+      });
+    }
+
+    saveCartToStorage();
+    updateCartUI();
+    renderProducts();
+    openCartDrawer();
+  }
+
   function setupEventListeners() {
     searchInput.addEventListener('input', (e) => {
       searchTerm = e.target.value.toLowerCase().trim();
@@ -494,6 +596,9 @@
       });
     }
 
+    // Inicializar carrossel de ofertas
+    setupOfferCarousel();
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         if (modalOverlay.classList.contains('open')) closeProductModal();
@@ -508,7 +613,11 @@
     changeCartItemQty,
     removeCartItem,
     openCartDrawer,
-    closeCartDrawer
+    closeCartDrawer,
+    nextOfferSlide,
+    prevOfferSlide,
+    goToOfferSlide,
+    addDirectOffer
   };
 
   if (document.readyState === 'loading') {

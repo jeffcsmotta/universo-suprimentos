@@ -1,7 +1,7 @@
 /* ==========================================================================
    UNIVERSO SUPRIMENTOS CORPORATIVOS - DESIGN SYSTEM & THEME
    Vitrine Digital B2B / Cotação WhatsApp Corporativa
-   PALETA REFINADA: Tons de Cinza Neutros, Grafite, Branco & Preto com CTAs Vivos
+   PALETA REFINADA: Tons de Cinza Neutros, Texturas Sutis e Hero Humanizada
    ========================================================================== */
 
 :root {
@@ -22,15 +22,16 @@
   --gray-800: #343A40;
   --gray-900: #212529;
 
-  /* Cores de Ação (Mantidas Vivas para Conversão B2B) */
+  /* Cores de Ação */
   --color-accent: #0066FF;         /* Azul Royal Elétrico para Ações */
   --color-accent-hover: #0052CC;
   --color-secondary: #00C853;      /* Verde Sucesso / Cotação */
   --color-whatsapp: #25D366;
   --color-whatsapp-hover: #1EBE5D;
+  --color-offer: #FF3B30;          /* Destaque de Oferta Pronta Entrega */
 
   /* Superfícies */
-  --bg-body: #F5F6F8;
+  --bg-body: #F7F8FA;
   --bg-surface: #FFFFFF;
   --bg-dark: #121316;
   --bg-dark-surface: #1E2024;
@@ -41,21 +42,21 @@
   --text-light: #8C93A0;
   --text-inverse: #FFFFFF;
 
-  /* Bordas e Raios */
-  --border-subtle: #E3E6EB;
+  /* Bordas e Raios Mais Refinados */
+  --border-subtle: #E2E5E9;
   --border-strong: #CDD2D9;
-  --radius-xs: 6px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 22px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
   --radius-pill: 9999px;
 
-  /* Sombras Precisas */
+  /* Sombras */
   --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.11);
-  --shadow-hover: 0 14px 32px rgba(0, 0, 0, 0.09);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.09);
+  --shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.08);
 
   --container-max: 1240px;
   --transition-fast: 0.16s ease;
@@ -77,6 +78,9 @@ html {
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: var(--bg-body);
+  /* Padrão sutil geométrico de fundo coerente com o nicho de suprimentos */
+  background-image: radial-gradient(#E2E5E9 0.85px, transparent 0.85px);
+  background-size: 24px 24px;
   color: var(--text-main);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -163,7 +167,7 @@ a {
    HEADER PRINCIPAL & LOGO OFICIAL SVG
    ========================================================================== */
 .header-main {
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   position: sticky;
@@ -189,7 +193,7 @@ a {
 }
 
 .brand-logo-img {
-  height: 48px;
+  height: 46px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -245,7 +249,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  background: var(--gray-100);
+  background: #FFFFFF;
   color: var(--color-primary);
   border: 1px solid var(--border-subtle);
   padding: 0.6rem 1rem;
@@ -257,7 +261,7 @@ a {
 }
 
 .btn-upload-list:hover {
-  background: var(--gray-200);
+  background: var(--gray-100);
   border-color: var(--gray-400);
 }
 
@@ -298,19 +302,23 @@ a {
 }
 
 /* ==========================================================================
-   HERO BANNER (TONS DE CINZA / GRAFITE PREMIUM)
+   HERO BANNER HUMANIZADA COM BACKGROUND FOTOGRÁFICO & SHADER FADER
    ========================================================================== */
 .hero-section {
   position: relative;
-  background: linear-gradient(135deg, #18191B 0%, #25282D 60%, #151618 100%);
+  /* Background fotográfico de escritório/logística com shader degradê fader para legibilidade */
+  background: 
+    linear-gradient(90deg, rgba(14, 15, 17, 0.94) 0%, rgba(18, 20, 24, 0.88) 50%, rgba(24, 26, 30, 0.72) 100%),
+    url('assets/images/hero_office_warehouse.jpg') center center / cover no-repeat;
   color: #FFFFFF;
-  padding: 3.5rem 0 3rem;
+  padding: 3.5rem 0 3.25rem;
   border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
   gap: 2.5rem;
   position: relative;
@@ -321,9 +329,10 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: var(--gray-300);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  backdrop-filter: blur(8px);
   padding: 0.35rem 0.85rem;
   border-radius: var(--radius-pill);
   font-size: 0.8rem;
@@ -334,11 +343,12 @@ a {
 }
 
 .hero-title {
-  font-size: clamp(2rem, 3.8vw, 3.1rem);
+  font-size: clamp(2rem, 3.6vw, 3rem);
   font-weight: 800;
-  line-height: 1.12;
+  line-height: 1.14;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-title span {
@@ -349,9 +359,10 @@ a {
 .hero-subtitle {
   font-size: 1.05rem;
   line-height: 1.6;
-  color: var(--gray-400);
+  color: #D8DEE9;
   margin-bottom: 1.75rem;
   max-width: 540px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero-cta-group {
@@ -384,7 +395,7 @@ a {
 }
 
 .btn-secondary-glass {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.12);
   color: #FFFFFF;
   font-weight: 600;
   font-size: 0.95rem;
@@ -393,13 +404,14 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .btn-secondary-glass:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .hero-highlights {
@@ -407,7 +419,7 @@ a {
   flex-wrap: wrap;
   gap: 1.25rem;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .highlight-item {
@@ -415,7 +427,7 @@ a {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.82rem;
-  color: var(--gray-300);
+  color: #E5E9F0;
 }
 
 .highlight-item svg {
@@ -423,116 +435,215 @@ a {
   flex-shrink: 0;
 }
 
-/* Card Hero Showcase */
-.hero-card-showcase {
-  background: var(--bg-dark-surface);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* ==========================================================================
+   CARROSSEL DE 3 OFERTAS B2B EM DESTAQUE (CARD DIREITO DA HERO)
+   ========================================================================== */
+.hero-offers-container {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
-  padding: 1.5rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  padding: 1.35rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+  color: var(--text-main);
+  position: relative;
 }
 
-.showcase-header {
+.offers-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.2rem;
-  padding-bottom: 0.9rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.showcase-header h4 {
-  font-size: 1rem;
-  font-weight: 700;
+.offers-header-title {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
-.badge-live {
-  background: rgba(0, 200, 83, 0.18);
-  color: var(--color-secondary);
-  border: 1px solid rgba(0, 200, 83, 0.3);
-  font-size: 0.7rem;
-  font-weight: 700;
+.badge-offer-tag {
+  background: rgba(255, 59, 48, 0.12);
+  color: var(--color-offer);
+  border: 1px solid rgba(255, 59, 48, 0.25);
+  font-size: 0.68rem;
+  font-weight: 800;
   padding: 0.2rem 0.55rem;
   border-radius: var(--radius-pill);
-  text-transform: uppercase;
 }
 
-.showcase-items-list {
+/* Carrossel de Ofertas */
+.offers-carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.offers-slides-track {
+  display: flex;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+}
+
+.offer-slide-item {
+  min-width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+}
+
+.offer-card-body {
+  background: var(--gray-50);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.offer-img-box {
+  width: 110px;
+  height: 110px;
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.offer-img-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.offer-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.offer-stock-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.offer-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.25;
+  margin-bottom: 0.35rem;
+}
+
+.offer-condition {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.offer-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.offer-price-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.offer-price-unit {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.offer-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.85rem;
   gap: 0.75rem;
 }
 
-.showcase-item-preview {
+.carousel-nav-arrows {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.btn-carousel-nav {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: #FFFFFF;
+  color: var(--text-main);
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.btn-carousel-nav:hover {
+  background: var(--gray-100);
+}
+
+.btn-add-offer-cart {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.55rem 0.95rem;
   border-radius: var(--radius-md);
-  padding: 0.65rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
-.showcase-item-preview:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+.btn-add-offer-cart:hover {
+  background: var(--color-accent);
 }
 
-.showcase-thumb {
-  width: 46px;
-  height: 46px;
-  border-radius: var(--radius-sm);
-  background: #FFFFFF;
-  padding: 3px;
-  object-fit: contain;
-  flex-shrink: 0;
+/* Dots indicadores do carrossel */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
 }
 
-.showcase-info {
-  flex: 1;
-  min-width: 0;
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gray-300);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
-.showcase-item-title {
-  font-size: 0.85rem;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #FFFFFF;
-}
-
-.showcase-item-desc {
-  font-size: 0.72rem;
-  color: var(--gray-500);
-}
-
-.showcase-quote-tag {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.12);
-  padding: 0.25rem 0.6rem;
-  border-radius: var(--radius-xs);
-  white-space: nowrap;
-}
-
-.showcase-action-box {
-  margin-top: 1.25rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  text-align: center;
-}
-
-.showcase-hint {
-  font-size: 0.78rem;
-  color: var(--gray-400);
-  margin-bottom: 0.75rem;
+.carousel-dot.active {
+  width: 22px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
 }
 
 /* ==========================================================================
@@ -557,8 +668,8 @@ a {
 }
 
 .trust-icon-box {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-md);
   background: var(--gray-100);
   color: var(--color-primary);
@@ -596,7 +707,7 @@ a {
   background: #FFFFFF;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 0.5rem;
+  padding: 0.45rem;
   box-shadow: var(--shadow-sm);
   display: flex;
   align-items: center;
@@ -613,7 +724,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.6rem 1.1rem;
+  padding: 0.55rem 1.05rem;
   border-radius: var(--radius-pill);
   font-size: 0.84rem;
   font-weight: 600;
@@ -637,46 +748,60 @@ a {
 }
 
 /* ==========================================================================
-   BLOCO DE COTAÇÃO RÁPIDA / LISTA PRONTA
+   SEÇÃO "MANDE SUA LISTA DE COMPRAS" (SUAVIZADA COM CARD CLARO & BORDA DELICADA)
    ========================================================================== */
 .quick-quote-banner {
   margin: 1.5rem 0 2.5rem;
 }
 
 .quick-quote-box {
-  background: linear-gradient(135deg, #24262A 0%, #151618 100%);
+  /* Substituição do bloco escuro por um card clean de alto contraste suave com padrão sutil */
+  background: #FFFFFF;
   border-radius: var(--radius-xl);
-  padding: 2rem 2.5rem;
-  color: #FFFFFF;
+  padding: 2rem 2.25rem;
+  color: var(--text-main);
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1.25fr 0.75fr;
   align-items: center;
   gap: 2rem;
   box-shadow: var(--shadow-md);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-quote-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: var(--color-primary);
 }
 
 .quick-quote-content h3 {
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: 800;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.45rem;
+  color: var(--text-main);
 }
 
 .quick-quote-content p {
-  font-size: 0.9rem;
-  color: var(--gray-400);
-  margin-bottom: 1.25rem;
-  max-width: 550px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 1.15rem;
+  max-width: 540px;
 }
 
 .quick-quote-form textarea {
   width: 100%;
   height: 85px;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--gray-50);
+  border: 1.5px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  color: #FFFFFF;
+  color: var(--text-main);
   font-size: 0.85rem;
   resize: none;
   outline: none;
@@ -684,8 +809,8 @@ a {
 }
 
 .quick-quote-form textarea:focus {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--gray-400);
+  background: #FFFFFF;
+  border-color: var(--gray-700);
 }
 
 .quick-quote-form textarea::placeholder {
@@ -744,7 +869,8 @@ a {
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--gray-700);
-  background: var(--gray-200);
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
   padding: 0.35rem 0.8rem;
   border-radius: var(--radius-pill);
 }
@@ -763,14 +889,14 @@ a {
   display: flex;
   flex-direction: column;
   transition: all var(--transition-normal);
-  cursor: pointer; /* Indicar clique para abrir opções */
+  cursor: pointer;
   position: relative;
 }
 
 .product-card:hover {
   border-color: var(--gray-400);
   box-shadow: var(--shadow-hover);
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
 .product-thumb-box {
@@ -813,7 +939,7 @@ a {
 }
 
 .product-content {
-  padding: 1.2rem;
+  padding: 1.15rem;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -829,11 +955,11 @@ a {
 }
 
 .product-title {
-  font-size: 0.98rem;
+  font-size: 0.96rem;
   font-weight: 700;
   color: var(--text-main);
   line-height: 1.3;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.45rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -858,11 +984,11 @@ a {
   gap: 0.35rem;
   background: var(--gray-100);
   color: var(--gray-700);
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 600;
-  padding: 0.3rem 0.6rem;
+  padding: 0.25rem 0.55rem;
   border-radius: var(--radius-xs);
-  margin-bottom: 1.1rem;
+  margin-bottom: 1rem;
 }
 
 .product-footer {
@@ -870,7 +996,7 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  padding-top: 0.85rem;
+  padding-top: 0.8rem;
   border-top: 1px solid var(--border-subtle);
 }
 
@@ -944,7 +1070,7 @@ a {
 .modal-card {
   background: #FFFFFF;
   width: 100%;
-  max-width: 580px;
+  max-width: 560px;
   max-height: 90vh;
   border-radius: var(--radius-xl);
   overflow: hidden;
@@ -1028,7 +1154,6 @@ a {
   color: var(--text-muted);
 }
 
-/* Opções / Grupos de Rádio / Variação */
 .option-group {
   margin-bottom: 1.35rem;
 }
@@ -1075,8 +1200,7 @@ a {
   background: var(--gray-50);
 }
 
-.option-choice-label input[type="radio"],
-.option-choice-label input[type="checkbox"] {
+.option-choice-label input[type="radio"] {
   accent-color: var(--color-primary);
   margin-right: 0.65rem;
   width: 16px;
@@ -1091,7 +1215,6 @@ a {
   align-items: center;
 }
 
-/* Campo de Observações Corporativas (Gastro/B2B Style) */
 .modal-obs-box {
   margin-top: 1rem;
 }
@@ -1253,11 +1376,10 @@ a {
   cursor: pointer;
 }
 
-/* CORREÇÃO SOLICITADA: SEM BARRA DE ROLAGEM HORIZONTAL OU ESPÚRIA NOS ITENS */
 .cart-drawer-body {
   flex: 1;
   overflow-y: auto;
-  overflow-x: hidden; /* Elimina qualquer scroll lateral */
+  overflow-x: hidden;
   padding: 1.25rem 1.5rem;
 }
 
@@ -1283,7 +1405,7 @@ a {
   flex-direction: column;
   gap: 0.85rem;
   width: 100%;
-  overflow: hidden; /* Sem barras extras */
+  overflow: hidden;
 }
 
 .cart-item-row {
@@ -1394,7 +1516,6 @@ a {
   color: #EF4444;
 }
 
-/* Cart Footer & Form */
 .cart-drawer-footer {
   padding: 1.25rem 1.5rem;
   background: var(--gray-50);
@@ -1561,8 +1682,8 @@ a {
   z-index: 85;
   background: var(--color-whatsapp);
   color: #FFFFFF;
-  width: 56px;
-  height: 56px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1575,7 +1696,9 @@ a {
   transform: scale(1.08);
 }
 
-/* Responsividade */
+/* ==========================================================================
+   RESPONSIVIDADE & MOBILE-FIRST OPTIMIZATION
+   ========================================================================== */
 @media (max-width: 992px) {
   .hero-grid {
     grid-template-columns: 1fr;
@@ -1608,26 +1731,69 @@ a {
   }
   .header-inner {
     flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .brand-logo-img {
+    height: 38px;
   }
   .trust-grid {
     grid-template-columns: 1fr;
   }
   .hero-title {
-    font-size: 1.85rem;
+    font-size: 1.8rem;
   }
-  .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 0.85rem;
+  .hero-subtitle {
+    font-size: 0.92rem;
   }
-  .product-thumb-box {
-    height: 140px;
+  .offer-card-body {
+    grid-template-columns: 85px 1fr;
+    gap: 0.75rem;
     padding: 0.75rem;
   }
+  .offer-img-box {
+    width: 85px;
+    height: 85px;
+  }
+  .offer-title {
+    font-size: 0.86rem;
+  }
+  .offer-price-val {
+    font-size: 1.1rem;
+  }
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .product-thumb-box {
+    height: 130px;
+    padding: 0.65rem;
+  }
   .product-content {
-    padding: 0.85rem;
+    padding: 0.75rem;
   }
   .product-title {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+  }
+  .product-desc {
+    display: none; /* No mobile simplifica para foco comercial */
+  }
+  .product-package-tag {
+    font-size: 0.68rem;
+    margin-bottom: 0.65rem;
+  }
+  .btn-open-options {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.75rem;
+  }
+  .modal-card {
+    max-height: 94vh;
+    border-radius: var(--radius-lg);
+  }
+  .modal-body {
+    padding: 1rem;
+  }
+  .cart-drawer {
+    max-width: 100%;
   }
   .footer-grid {
     grid-template-columns: 1fr;

@@ -163,61 +163,164 @@
         </div>
       </div>
 
-      <!-- Card Vitrine Destaque -->
-      <div class="hero-card-showcase">
-        <div class="showcase-header">
-          <h4>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #60A5FA;">
+      <!-- Card Vitrine: Carrossel de 3 Ofertas B2B em Destaque -->
+      <div class="hero-offers-container" id="hero-offers-carousel">
+        <div class="offers-header">
+          <div class="offers-header-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--color-offer);">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
-            Mais Cotados pelas Empresas
-          </h4>
-          <span class="badge-live">Pronta Entrega</span>
+            Ofertas do Mês Corporativo
+          </div>
+          <span class="badge-offer-tag">Pronta Entrega</span>
         </div>
 
-        <div class="showcase-items-list">
-          <div class="showcase-item-preview" onclick="window.universoApp.openProductModal('report-a4')">
-            <img src="assets/images/produtos/folhas_report_a4.jpg" alt="Papel A4 Report" class="showcase-thumb">
-            <div class="showcase-info">
-              <div class="showcase-item-title">Caixa Papel A4 Report Suzano (10 Resmas)</div>
-              <div class="showcase-item-desc">75g/m² ou 90g • 5.000 folhas p/ caixa</div>
+        <div class="offers-carousel-wrapper">
+          <div class="offers-slides-track" id="offers-track">
+            <!-- Oferta 1: Papel Report A4 -->
+            <div class="offer-slide-item">
+              <div class="offer-card-body">
+                <div class="offer-img-box">
+                  <img src="assets/images/produtos/folhas_report_a4.jpg" alt="Caixa Papel A4 Report Suzano" loading="lazy">
+                </div>
+                <div class="offer-details">
+                  <div class="offer-stock-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Estoque Pronta Entrega
+                  </div>
+                  <div class="offer-title">Caixa Papel A4 Report Suzano (10 Resmas / 5.000 fls)</div>
+                  <div class="offer-condition">75g/m² Alcalino • Faturado 28 DDL PJ</div>
+                  <div class="offer-price-row">
+                    <span class="offer-price-val">R$ 249,90</span>
+                    <span class="offer-price-unit">/ cx (R$ 24,99 resma)</span>
+                  </div>
+                  <div class="offer-actions-row">
+                    <button type="button" class="btn-add-offer-cart" onclick="window.universoApp.addDirectOffer('report-a4', 'Caixa c/ 10 resmas (5.000 folhas)', '75g/m² (Uso Geral Escritório)', 1, 249.90)">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                      Adicionar à Cotação
+                    </button>
+                    <div class="carousel-nav-arrows">
+                      <button type="button" class="btn-carousel-nav" onclick="window.universoApp.prevOfferSlide()" aria-label="Oferta anterior">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                      </button>
+                      <button type="button" class="btn-carousel-nav" onclick="window.universoApp.nextOfferSlide()" aria-label="Próxima oferta">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <span class="showcase-quote-tag">Configurar</span>
-          </div>
 
-          <div class="showcase-item-preview" onclick="window.universoApp.openProductModal('papel-interfolha')">
-            <img src="assets/images/produtos/papel_toalha_interfolha.jpg" alt="Papel Toalha Interfolha" class="showcase-thumb">
-            <div class="showcase-info">
-              <div class="showcase-item-title">Papel Toalha Interfolha 100% Celulose</div>
-              <div class="showcase-item-desc">Fardo 1.000 / 2.000 fls • 2 ou 3 dobras</div>
+            <!-- Oferta 2: Papel Toalha Interfolha -->
+            <div class="offer-slide-item">
+              <div class="offer-card-body">
+                <div class="offer-img-box">
+                  <img src="assets/images/produtos/papel_toalha_interfolha.jpg" alt="Papel Toalha Interfolha Celulose" loading="lazy">
+                </div>
+                <div class="offer-details">
+                  <div class="offer-stock-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Estoque Pronta Entrega
+                  </div>
+                  <div class="offer-title">Fardo Papel Toalha Interfolha 100% Celulose (2.000 fls)</div>
+                  <div class="offer-condition">2 Dobras Alta Absorção • Faturamento Mensal</div>
+                  <div class="offer-price-row">
+                    <span class="offer-price-val">R$ 68,90</span>
+                    <span class="offer-price-unit">/ fardo c/ 2.000 folhas</span>
+                  </div>
+                  <div class="offer-actions-row">
+                    <button type="button" class="btn-add-offer-cart" onclick="window.universoApp.addDirectOffer('papel-interfolha', 'Fardo com 2.000 folhas', '2 dobras (Folha Simples Plus)', 1, 68.90)">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                      Adicionar à Cotação
+                    </button>
+                    <div class="carousel-nav-arrows">
+                      <button type="button" class="btn-carousel-nav" onclick="window.universoApp.prevOfferSlide()" aria-label="Oferta anterior">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                      </button>
+                      <button type="button" class="btn-carousel-nav" onclick="window.universoApp.nextOfferSlide()" aria-label="Próxima oferta">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <span class="showcase-quote-tag">Configurar</span>
-          </div>
 
-          <div class="showcase-item-preview" onclick="window.universoApp.openProductModal('cafe-bom-jesus')">
-            <img src="assets/images/produtos/cafe_bom_jesus.jpg" alt="Café Bom Jesus" class="showcase-thumb">
-            <div class="showcase-info">
-              <div class="showcase-item-title">Café Bom Jesus Tradicional / Extraforte 500g</div>
-              <div class="showcase-item-desc">Fardo corporativo 10 ou 20 pacotes</div>
+            <!-- Oferta 3: Café Bom Jesus 500g -->
+            <div class="offer-slide-item">
+              <div class="offer-card-body">
+                <div class="offer-img-box">
+                  <img src="assets/images/produtos/cafe_bom_jesus.jpg" alt="Café Bom Jesus 500g" loading="lazy">
+                </div>
+                <div class="offer-details">
+                  <div class="offer-stock-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Estoque Pronta Entrega
+                  </div>
+                  <div class="offer-title">Café Bom Jesus Tradicional 500g (Fardo c/ 10 un)</div>
+                  <div class="offer-condition">Torrado e Moído • Condição p/ Copa Corporativa</div>
+                  <div class="offer-price-row">
+                    <span class="offer-price-val">R$ 169,00</span>
+                    <span class="offer-price-unit">/ fardo (R$ 16,90 un)</span>
+                  </div>
+                  <div class="offer-actions-row">
+                    <button type="button" class="btn-add-offer-cart" onclick="window.universoApp.addDirectOffer('cafe-bom-jesus', 'Fardo com 10 unidades (5kg)', 'Tradicional (Ponto de Moagem Média)', 1, 169.00)">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                      Adicionar à Cotação
+                    </button>
+                    <div class="carousel-nav-arrows">
+                      <button type="button" class="btn-carousel-nav" onclick="window.universoApp.prevOfferSlide()" aria-label="Oferta anterior">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                      </button>
+                      <button type="button" class="btn-carousel-nav" onclick="window.universoApp.nextOfferSlide()" aria-label="Próxima oferta">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <span class="showcase-quote-tag">Configurar</span>
-          </div>
-
-          <div class="showcase-item-preview" onclick="window.universoApp.openProductModal('caixa-perfurocortante')">
-            <img src="assets/images/produtos/caixa_descarpack.jpg" alt="Descarpack Perfurocortante" class="showcase-thumb">
-            <div class="showcase-info">
-              <div class="showcase-item-title">Coletor Perfurocortante Descarpack</div>
-              <div class="showcase-item-desc">Norma NR32 / RDC 222 • 3L, 7L, 13L, 20L</div>
-            </div>
-            <span class="showcase-quote-tag">Configurar</span>
           </div>
         </div>
 
-        <div class="showcase-action-box">
-          <p class="showcase-hint">Sem preços abertos para concorrentes. Negociação direta no 1 a 1.</p>
-          <button type="button" class="btn-primary-glow" style="width: 100%; justify-content: center; font-size: 0.88rem; padding: 0.65rem;" onclick="window.universoApp.openCartDrawer()">
-            Abrir Minha Lista de Cotação
-          </button>
+        <!-- Indicadores Dots -->
+        <div class="carousel-dots" id="offers-dots">
+          <button type="button" class="carousel-dot active" onclick="window.universoApp.goToOfferSlide(0)" aria-label="Ir para oferta 1"></button>
+          <button type="button" class="carousel-dot" onclick="window.universoApp.goToOfferSlide(1)" aria-label="Ir para oferta 2"></button>
+          <button type="button" class="carousel-dot" onclick="window.universoApp.goToOfferSlide(2)" aria-label="Ir para oferta 3"></button>
+        </div>
+
+        <div style="margin-top: 0.85rem; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted);">
+          <span>Faturamento 28 DDL direto no CNPJ</span>
+          <button type="button" style="background: none; border: none; color: var(--color-accent); font-weight: 700; cursor: pointer;" onclick="window.universoApp.openCartDrawer()">Ver Cotação &rarr;</button>
         </div>
       </div>
     </div>
