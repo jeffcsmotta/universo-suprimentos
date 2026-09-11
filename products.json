@@ -1,0 +1,370 @@
+[
+  {
+    "id": "report-a4",
+    "name": "Caixa de Papel A4 Report Suzano (10 Resmas / 5.000 Fls)",
+    "category": "escritorio",
+    "badge": "Campeão de Vendas",
+    "description": "Papel sulfite 75g/m² branco e brilhante de alta performance. Ideal para escritórios, clínicas e empresas.",
+    "package": "Caixa c/ 10 resmas de 500 fls",
+    "image": "assets/images/produtos/folhas_report_a4.jpg",
+    "featured": true
+  },
+  {
+    "id": "chamex-a4",
+    "name": "Papel Sulfite Chamex Multi A4 75g",
+    "category": "escritorio",
+    "badge": "Alta Demanda",
+    "description": "Resma com 500 folhas de alto rendimento para impressões e fotocópias de alta nitidez.",
+    "package": "Resma 500 fls ou Caixa 10 resmas",
+    "image": "assets/images/produtos/folhas_chamex_a4.jpg",
+    "featured": true
+  },
+  {
+    "id": "pasta-az",
+    "name": "Pasta Registradora AZ Lombo Largo / Estreito",
+    "category": "escritorio",
+    "badge": "Organização",
+    "description": "Estrutura robusta com ferragem niquelada e visor de identificação no dorso para arquivos corporativos.",
+    "package": "Unidade ou Fardo c/ 10 un",
+    "image": "assets/images/produtos/pasta_az.jpg"
+  },
+  {
+    "id": "pasta-plastica-l",
+    "name": "Pasta Plástica Formato L Cristal",
+    "category": "escritorio",
+    "badge": "Corporativo",
+    "description": "Proteção e organização de propostas, relatórios e contratos em papel sem furar documentos.",
+    "package": "Pacote c/ 10 ou 100 un",
+    "image": "assets/images/produtos/pasta_plastica_l.jpg"
+  },
+  {
+    "id": "canetas-esferograficas",
+    "name": "Canetas Esferográficas BIC Cristal / Compactor",
+    "category": "escritorio",
+    "badge": "Uso Contínuo",
+    "description": "Escrita macia e secagem rápida. Disponível nas cores azul, preta e vermelha.",
+    "package": "Caixa c/ 50 unidades",
+    "image": "assets/images/produtos/canetas_esferograficas.jpg"
+  },
+  {
+    "id": "canetao-permanente",
+    "name": "Canetão Marcador Permanente Pilot 100",
+    "category": "escritorio",
+    "badge": "Logística & Almoxarifado",
+    "description": "Ponta chanfrada resistente para marcação em caixas de papelão, plásticos, vidros e metais.",
+    "package": "Caixa c/ 12 unidades",
+    "image": "assets/images/produtos/canetao_permanente.jpg"
+  },
+  {
+    "id": "corretivo-fita",
+    "name": "Corretivo em Fita Ergonômico",
+    "category": "escritorio",
+    "badge": "Essencial",
+    "description": "Aplicação a seco sem tempo de espera para reescrita imediata e acabamento limpo.",
+    "package": "Unidade ou Blister c/ 12 un",
+    "image": "assets/images/produtos/corretivo_fita.jpg"
+  },
+  {
+    "id": "elastico-dinheiro",
+    "name": "Elástico de Borracha Especial para Dinheiro Redbor",
+    "category": "escritorio",
+    "badge": "Financeiro",
+    "description": "Alta elasticidade e durabilidade para amarração de cédulas, envelopes e documentos.",
+    "package": "Pacote 120un / 1200un",
+    "image": "assets/images/produtos/elastico_dinheiro.jpg"
+  },
+  {
+    "id": "quadro-branco",
+    "name": "Quadro Branco Magnético com Moldura de Alumínio",
+    "category": "escritorio",
+    "badge": "Salas de Reunião",
+    "description": "Superfície de escrita suave e fácil apagamento. Medidas 90x60cm e 150x120cm.",
+    "package": "Sob Medida / Diversos Tamanhos",
+    "image": "assets/images/produtos/quadro_branco.jpg"
+  },
+  {
+    "id": "papel-interfolha",
+    "name": "Papel Toalha Interfolha 2 ou 3 Dobras 100% Celulose",
+    "category": "higiene",
+    "badge": "Giro Diário",
+    "description": "Excelente absorção e maciez para banheiros corporativos e dispensadores padrão.",
+    "package": "Fardo c/ 1.000 / 2.000 folhas",
+    "image": "assets/images/produtos/papel_toalha_interfolha.jpg",
+    "featured": true
+  },
+  {
+    "id": "papel-rolao",
+    "name": "Papel Higiênico Rolão Institucional Folha Dupla / Simples",
+    "category": "higiene",
+    "badge": "Alto Rendimento",
+    "description": "Bobinas de 300m e 500m de alto fluxo para redução de reposição em empresas e clínicas.",
+    "package": "Fardo com 8 rolos",
+    "image": "assets/images/produtos/papel_higienico_rolao.jpg",
+    "featured": true
+  },
+  {
+    "id": "sabonete-liquido-5l",
+    "name": "Sabonete Líquido Concentrado 5L (Erva Doce / Pêssego)",
+    "category": "higiene",
+    "badge": "Galão Econômico",
+    "description": "Fórmula com pH neutro e hidratante com perfume suave para dispensers de lavatórios.",
+    "package": "Galão de 5 Litros",
+    "image": "assets/images/produtos/sabonete_liquido_5l.jpg"
+  },
+  {
+    "id": "sabonete-espuma-5l",
+    "name": "Sabonete Espuma Institucional Refil 5L",
+    "category": "higiene",
+    "badge": "Economia Máxima",
+    "description": "Rendimento até 3x superior ao sabonete líquido tradicional, toque aveludado e menor consumo.",
+    "package": "Galão de 5 Litros",
+    "image": "assets/images/produtos/sabonete_espuma_5l.jpg"
+  },
+  {
+    "id": "sabonete-desengraxante",
+    "name": "Sabonete Líquido Desengraxante Industrial All Clean 5L",
+    "category": "higiene",
+    "badge": "Oficinas & Indústria",
+    "description": "Remove óleos pesados, graxas e fuligens sem agredir as mãos dos operadores.",
+    "package": "Galão de 5 Litros",
+    "image": "assets/images/produtos/sabonete_desengraxante_5l.jpg"
+  },
+  {
+    "id": "desinfetante-5l",
+    "name": "Desinfetante Perfumado Concentrado 5L (Eucalipto / Lavanda / Floral)",
+    "category": "higiene",
+    "badge": "Ação Bactericida",
+    "description": "Ação higienizante profunda e fixação prolongada de fragrância em ambientes comerciais.",
+    "package": "Galão de 5 Litros",
+    "image": "assets/images/produtos/desinfetante_aromas_5l.jpg"
+  },
+  {
+    "id": "detergente-5l",
+    "name": "Detergente Neutro Lava-Louças Industrial 5L",
+    "category": "higiene",
+    "badge": "Cozinhas & Copas",
+    "description": "Alto poder desengordurante com espuma densa e fácil enxágue para copas corporativas e refeitórios.",
+    "package": "Galão de 5 Litros",
+    "image": "assets/images/produtos/detergente_loucas_5l.jpg"
+  },
+  {
+    "id": "agua-sanitaria-5l",
+    "name": "Água Sanitária Concentrada 5L",
+    "category": "higiene",
+    "badge": "Desinfecção",
+    "description": "Cloro ativo estabilizado para desinfecção de sanitários, pisos e alvejamento geral.",
+    "package": "Galão de 5 Litros",
+    "image": "assets/images/produtos/agua_sanitaria_5l.jpg"
+  },
+  {
+    "id": "alcool-5l",
+    "name": "Álcool Líquido 70% Hospitalar e Corporativo 5L",
+    "category": "higiene",
+    "badge": "Norma ANVISA",
+    "description": "Desinfecção rápida de superfícies fixas, bancadas e maçanetas com rápida evaporação.",
+    "package": "Galão de 5 Litros",
+    "image": "assets/images/produtos/alcool_liquido_5l.jpg"
+  },
+  {
+    "id": "balde-mop",
+    "name": "Balde Conjunto MOP Giratório 360° (9L / 13L)",
+    "category": "higiene",
+    "badge": "Ergonomia",
+    "description": "Cesto centrífuga para enxágue e secagem de microfibra sem contato manual com a sujeira.",
+    "package": "Kit Balde + Cabo + 2 Refis",
+    "image": "assets/images/produtos/balde_mop_giratorio.jpg"
+  },
+  {
+    "id": "pano-microfibra",
+    "name": "Pano de Microfibra Mágico Alta Absorção",
+    "category": "higiene",
+    "badge": "Sem Riscos",
+    "description": "Limpeza de vidros, monitores e superfícies polidas sem soltar fiapos ou arranhar.",
+    "package": "Pacote c/ 5 ou 10 unidades",
+    "image": "assets/images/produtos/pano_microfibra.jpg"
+  },
+  {
+    "id": "pano-perfex",
+    "name": "Rolo de Pano Multiuso Tipo Perfex",
+    "category": "higiene",
+    "badge": "Copa & Limpeza",
+    "description": "Pano descartável perfurado com ação antibacteriana e secagem ultra-rápida.",
+    "package": "Rolo c/ 300 metros",
+    "image": "assets/images/produtos/pano_perfex.jpg"
+  },
+  {
+    "id": "copos-descartaveis",
+    "name": "Copos Descartáveis para Água e Café (50ml, 80ml, 150ml, 180ml, 200ml)",
+    "category": "descartaveis",
+    "badge": "Alto Giro",
+    "description": "Resistentes e certificados pela ABNT. Ideais para bebedouros, cafés e recepções.",
+    "package": "Caixa c/ 2.500 / 5.000 un",
+    "image": "assets/images/produtos/copos_descartaveis.jpg",
+    "featured": true
+  },
+  {
+    "id": "sacos-lixo",
+    "name": "Sacos para Lixo Reforçados (20L, 40L, 60L, 100L e 200L)",
+    "category": "descartaveis",
+    "badge": "Pesado / Comercial",
+    "description": "Espessura micrada reforçada anti-rompimento com solda contínua estanque.",
+    "package": "Fardo c/ 100 unidades",
+    "image": "assets/images/produtos/sacos_lixo.jpg"
+  },
+  {
+    "id": "plastico-bolha",
+    "name": "Bobina de Plástico Bolha de Alta Resistência (120x100m)",
+    "category": "descartaveis",
+    "badge": "Expedição & Logística",
+    "description": "Amortecimento confiável para proteção de peças, eletrônicos e embalagens no transporte.",
+    "package": "Bobina 100 metros",
+    "image": "assets/images/produtos/plastico_bolha.jpg"
+  },
+  {
+    "id": "bobina-picotada",
+    "name": "Bobina Plástica Picotada Transparente",
+    "category": "descartaveis",
+    "badge": "Armazenamento",
+    "description": "Sacos transparentes picotados para separação de materiais, peças e alimentos.",
+    "package": "Rolo c/ 500 ou 1.000 sacos",
+    "image": "assets/images/produtos/bobina_picotada.jpg"
+  },
+  {
+    "id": "cafe-bom-jesus",
+    "name": "Café Bom Jesus Tradicional / Extra Forte 500g",
+    "category": "copa",
+    "badge": "Padrão Gaúcho",
+    "description": "Torrado e moído no ponto ideal para manter sua equipe focada e acolher seus clientes.",
+    "package": "Fardo c/ 10 ou 20 pacotes",
+    "image": "assets/images/produtos/cafe_bom_jesus.jpg",
+    "featured": true
+  },
+  {
+    "id": "cafe-melitta",
+    "name": "Café Melitta Vácuo 500g Tradicional / Extraforte",
+    "category": "copa",
+    "badge": "Sabor Marcante",
+    "description": "Embalagem a vácuo pura que preserva o aroma intenso e frescor por muito mais tempo.",
+    "package": "Fardo c/ 10 ou 20 un",
+    "image": "assets/images/produtos/cafe_melitta.jpg"
+  },
+  {
+    "id": "garrafa-termica-mor",
+    "name": "Garrafa Térmica de Pressão em Aço Inox / Polipropileno (1L, 1.8L, 1.9L)",
+    "category": "copa",
+    "badge": "Isolamento 12h+",
+    "description": "Ampola interna de alta conservação térmica com sistema de acionamento por pressão macia.",
+    "package": "Unidade",
+    "image": "assets/images/produtos/garrafa_termica.jpg"
+  },
+  {
+    "id": "acucar-uniao",
+    "name": "Açúcar Cristal / Refinado União & Sachês Individuais",
+    "category": "copa",
+    "badge": "Copa Corporativa",
+    "description": "Disponível em pacotes de 1kg/5kg e sachês higiênicos individuais de 5g para mesas de reunião.",
+    "package": "Fardo ou Caixa c/ 1.000 sachês",
+    "image": "assets/images/produtos/acucar_cristal_refinado.jpg"
+  },
+  {
+    "id": "mexedor-drink",
+    "name": "Mexedor de Café e Drink Descartável 11cm",
+    "category": "copa",
+    "badge": "Higiene no Café",
+    "description": "Mexedores plásticos embalados e resistentes para misturar café e chá sem esquentar as mãos.",
+    "package": "Pacote c/ 500 unidades",
+    "image": "assets/images/produtos/mexedor_drink.jpg"
+  },
+  {
+    "id": "luva-nitrilica",
+    "name": "Luvas Nitrílicas de Procedimento Sem Pó (P, M, G, GG)",
+    "category": "epis",
+    "badge": "Hipoalergênica",
+    "description": "Alta resistência química e mecânica sem risco de alergia ao látex. Certificada CA.",
+    "package": "Caixa c/ 100 unidades",
+    "image": "assets/images/produtos/luva_nitrilica.jpg",
+    "featured": true
+  },
+  {
+    "id": "luva-latex-amarela",
+    "name": "Luva de Borracha Látex Multiuso Forrada Amarela",
+    "category": "epis",
+    "badge": "Proteção Manual",
+    "description": "Palma antiderrapante e forro de algodão para manuseio de produtos químicos de limpeza.",
+    "package": "Par ou Pacote c/ 12 pares",
+    "image": "assets/images/produtos/luva_latex_amarela.jpg"
+  },
+  {
+    "id": "toucas-descartaveis",
+    "name": "Touca Descartável Sanfonada em TNT",
+    "category": "epis",
+    "badge": "Higiene e Barreira",
+    "description": "Elástico em toda a borda para retenção segura de cabelos em cozinhas e clínicas.",
+    "package": "Pacote c/ 100 unidades",
+    "image": "assets/images/produtos/toucas_descartaveis.jpg"
+  },
+  {
+    "id": "mascaras-descartaveis",
+    "name": "Máscara Cirúrgica Descartável Tripla com Filtro Meltblown",
+    "category": "epis",
+    "badge": "Eficácia BFE 95%+",
+    "description": "Clipe nasal ajustável e elásticos confortáveis para proteção respiratória contínua.",
+    "package": "Caixa c/ 50 unidades",
+    "image": "assets/images/produtos/mascaras_descartaveis.jpg"
+  },
+  {
+    "id": "caixa-perfurocortante",
+    "name": "Coletor de Materiais Perfurocortantes Descarpack (NR-32 / ANVISA)",
+    "category": "hospitalar",
+    "badge": "Segurança Biológica",
+    "description": "Papelão rígido de alta resistência contra perfurações, agulhas e bisturis. Com travas de segurança.",
+    "package": "Unidade (3L, 7L, 13L, 20L)",
+    "image": "assets/images/produtos/caixa_descarpack.jpg",
+    "featured": true
+  },
+  {
+    "id": "lencol-hospitalar",
+    "name": "Lençol de Papel Hospitalar Descartável 100% Celulose (50cm x 50m / 70cm x 50m)",
+    "category": "hospitalar",
+    "badge": "Maca & Consultório",
+    "description": "Papel macio de alta alvura para cobertura higiênica de macas de exames e consultórios odontológicos.",
+    "package": "Fardo c/ 6 ou 10 rolos",
+    "image": "assets/images/produtos/lencois_hospitalares.jpg"
+  },
+  {
+    "id": "teclado-usb",
+    "name": "Teclado USB Multimídia ABNT2 Resistente a Respingos",
+    "category": "informatica",
+    "badge": "Durabilidade",
+    "description": "Teclas de perfil baixo, silenciosas e confortáveis para digitação corporativa prolongada.",
+    "package": "Unidade",
+    "image": "assets/images/produtos/teclado_usb.jpg"
+  },
+  {
+    "id": "mouse-optico",
+    "name": "Mouse Óptico USB / Wireless Alta Resolução",
+    "category": "informatica",
+    "badge": "Plug & Play",
+    "description": "Sensor de alta precisão 1200 DPI e design ambidestro ergonômico.",
+    "package": "Unidade",
+    "image": "assets/images/produtos/mouse_optico.jpg"
+  },
+  {
+    "id": "mouse-pad",
+    "name": "Mouse Pad Ergonômico com Apoio de Pulso em Gel",
+    "category": "informatica",
+    "badge": "Prevenção LER/DORT",
+    "description": "Base antiderrapante e descanso anatômico de pulso que previne fadiga muscular.",
+    "package": "Unidade",
+    "image": "assets/images/produtos/mouse_pad.jpg"
+  },
+  {
+    "id": "toner-impressora",
+    "name": "Toner para Impressora HP / Brother / Samsung (Diversos Modelos)",
+    "category": "informatica",
+    "badge": "Rendimento Garantido",
+    "description": "Preto intenso, alta densidade e excelente custo por página impressa.",
+    "package": "Unidade lacrada",
+    "image": "assets/images/produtos/toner_impressora.jpg"
+  }
+]

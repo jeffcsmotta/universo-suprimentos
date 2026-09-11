@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universo Suprimentos Corporativos | Vitrine & Cotação B2B</title>
+  <meta name="description" content="Tudo o que sua empresa precisa em um só lugar. Higiene, limpeza profissional, descartáveis, papelaria corporativa, EPIs e copa com faturamento para PJ.">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon & Stylesheet -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="stylesheet" href="universo-theme.css">
+</head>
+<body>
+
+  <!-- BARRA DE VANTAGENS CORPORATIVAS (TOP BAR) -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-features">
+        <span class="top-feature-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Faturamento para Empresas (Boleto a Prazo)
+        </span>
+        <span class="top-feature-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="1" y="3" width="15" height="13"></rect>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+          </svg>
+          Entregas Rápidas e Gratuitas na Região
+        </span>
+        <span class="top-feature-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          Atendimento Comercial Ágil & Consultivo
+        </span>
+      </div>
+      <div class="top-bar-contact">
+        <a href="tel:5434191112">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          (54) 3419-1112
+        </a>
+        <a href="https://wa.me/5554999500444" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+          (54) 9 9950-0444
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER PRINCIPAL -->
+  <header class="header-main">
+    <div class="container header-inner">
+      <a href="#" class="brand-logo">
+        <img src="assets/images/logo.png" alt="Universo Suprimentos Corporativos" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-logo-title">UNIVERSO</span>
+          <span class="brand-logo-subtitle">Suprimentos Corporativos</span>
+        </div>
+      </a>
+
+      <!-- Barra de Busca Rápida -->
+      <div class="header-search">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="search-input" placeholder="Buscar papéis, copos, álcool 70%, café, luvas...">
+        </div>
+      </div>
+
+      <!-- Ações do Cabeçalho -->
+      <div class="header-actions">
+        <button type="button" class="btn-upload-list" id="btn-header-upload">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="12" y1="18" x2="12" y2="12"></line>
+            <line x1="9" y1="15" x2="15" y2="15"></line>
+          </svg>
+          <span>Cotar Minha Lista</span>
+        </button>
+
+        <button type="button" class="btn-cart-trigger" id="btn-cart-trigger" aria-label="Abrir lista de cotação">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span>Lista de Cotação</span>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION B2B -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          Fornecedor Corporativo Homologado
+        </div>
+        <h1 class="hero-title">
+          Tudo o que sua empresa precisa, <span>em um só Universo!</span>
+        </h1>
+        <p class="hero-subtitle">
+          Soluções completas em materiais de limpeza, higiene, descartáveis, copa e escritório. Preços sob medida por volume e faturamento facilitado para o seu CNPJ.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#catalog-section" class="btn-primary-glow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            Explorar Vitrine de Produtos
+          </a>
+          <a href="#quick-quote-section" class="btn-secondary-glass">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            Mandar Lista Pronta
+          </a>
+        </div>
+
+        <div class="hero-highlights">
+          <div class="highlight-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Boleto Faturado a Prazo
+          </div>
+          <div class="highlight-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            PIX e Cartões
+          </div>
+          <div class="highlight-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Entrega Ágil & Gratuita
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Vitrine Destaque -->
+      <div class="hero-card-showcase">
+        <div class="showcase-header">
+          <h4>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #60A5FA;">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            Itens Mais Cotados pelas Empresas
+          </h4>
+          <span class="badge-live">Em Estoque</span>
+        </div>
+
+        <div class="showcase-items-list">
+          <div class="showcase-item-preview">
+            <img src="assets/images/produtos/folhas_report_a4.jpg" alt="Papel A4 Report" class="showcase-thumb">
+            <div class="showcase-info">
+              <div class="showcase-item-title">Caixa Papel A4 Report Suzano (10 Resmas)</div>
+              <div class="showcase-item-desc">75g/m² • 5.000 folhas por caixa</div>
+            </div>
+            <span class="showcase-quote-tag">Cotar Volume</span>
+          </div>
+
+          <div class="showcase-item-preview">
+            <img src="assets/images/produtos/papel_toalha_interfolha.jpg" alt="Papel Toalha Interfolha" class="showcase-thumb">
+            <div class="showcase-info">
+              <div class="showcase-item-title">Papel Toalha Interfolha 100% Celulose</div>
+              <div class="showcase-item-desc">Fardo 1.000 / 2.000 fls • Alta absorção</div>
+            </div>
+            <span class="showcase-quote-tag">Cotar Volume</span>
+          </div>
+
+          <div class="showcase-item-preview">
+            <img src="assets/images/produtos/cafe_bom_jesus.jpg" alt="Café Bom Jesus" class="showcase-thumb">
+            <div class="showcase-info">
+              <div class="showcase-item-title">Café Bom Jesus Tradicional 500g</div>
+              <div class="showcase-item-desc">Fardo corporativo 10 / 20 pacotes</div>
+            </div>
+            <span class="showcase-quote-tag">Cotar Volume</span>
+          </div>
+
+          <div class="showcase-item-preview">
+            <img src="assets/images/produtos/caixa_descarpack.jpg" alt="Descarpack Perfurocortante" class="showcase-thumb">
+            <div class="showcase-info">
+              <div class="showcase-item-title">Coletor Perfurocortante Descarpack</div>
+              <div class="showcase-item-desc">Norma NR32 / RDC 222 • 3L, 7L, 13L, 20L</div>
+            </div>
+            <span class="showcase-quote-tag">Cotar Volume</span>
+          </div>
+        </div>
+
+        <div class="showcase-action-box">
+          <p class="showcase-hint">Sem preços visíveis para a concorrência. Condições negociadas no 1 a 1.</p>
+          <button class="btn-primary-glow" style="width: 100%; justify-content: center; font-size: 0.88rem; padding: 0.65rem;" onclick="window.universoApp.openCartDrawer()">
+            Ver Meu Carrinho de Cotação
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BARRA DE VANTAGENS B2B (TRUST BAR) -->
+  <section class="trust-banner">
+    <div class="container trust-grid">
+      <div class="trust-card">
+        <div class="trust-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+        </div>
+        <div class="trust-text">
+          <h5>Condição por Volume</h5>
+          <p>Tabelas especiais para caixas e fardos fechados</p>
+        </div>
+      </div>
+
+      <div class="trust-card">
+        <div class="trust-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+            <line x1="1" y1="10" x2="23" y2="10"></line>
+          </svg>
+        </div>
+        <div class="trust-text">
+          <h5>Boleto Faturado PJ</h5>
+          <p>Condição facilitada para cadastro de empresas</p>
+        </div>
+      </div>
+
+      <div class="trust-card">
+        <div class="trust-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <div class="trust-text">
+          <h5>Orçamento em Minutos</h5>
+          <p>Retorno ágil pelo WhatsApp direto com vendedor</p>
+        </div>
+      </div>
+
+      <div class="trust-card">
+        <div class="trust-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+        <div class="trust-text">
+          <h5>Entrega Gratuita na Região</h5>
+          <p>Frota própria atendendo a Serra Gaúcha</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAVEGAÇÃO POR CATEGORIAS (FILTROS STICKY) -->
+  <nav class="categories-nav-section">
+    <div class="container">
+      <div class="categories-bar-wrapper">
+        <button class="category-tab-btn active" data-category="todos">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          Todos os Produtos
+        </button>
+
+        <button class="category-tab-btn" data-category="escritorio">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+          Escritório & Papelaria
+        </button>
+
+        <button class="category-tab-btn" data-category="higiene">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+          </svg>
+          Higiene & Limpeza
+        </button>
+
+        <button class="category-tab-btn" data-category="descartaveis">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6L6 18M6 6l12 12"></path>
+            <circle cx="12" cy="12" r="9"></circle>
+          </svg>
+          Descartáveis & Embalagens
+        </button>
+
+        <button class="category-tab-btn" data-category="copa">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+            <line x1="6" y1="1" x2="6" y2="4"></line>
+            <line x1="10" y1="1" x2="10" y2="4"></line>
+            <line x1="14" y1="1" x2="14" y2="4"></line>
+          </svg>
+          Copa & Cozinha
+        </button>
+
+        <button class="category-tab-btn" data-category="epis">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          Segurança & EPIs
+        </button>
+
+        <button class="category-tab-btn" data-category="hospitalar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Linha Hospitalar
+        </button>
+
+        <button class="category-tab-btn" data-category="informatica">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+          Informática
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SEÇÃO "MANDE SUA LISTA DE COMPRAS" (FLYER FAST-TRACK) -->
+  <section class="container quick-quote-banner" id="quick-quote-section">
+    <div class="quick-quote-box">
+      <div class="quick-quote-content">
+        <h3>Mande sua Lista de Compras e deixe o resto com a gente!</h3>
+        <p>
+          Já tem a planilha, pedido ou relação de materiais que sua empresa compra todo mês? Cole o texto aqui ou nos envie direto pelo WhatsApp para receber um orçamento comparativo detalhado.
+        </p>
+        <div class="quick-quote-form">
+          <textarea id="quick-list-text" placeholder="Exemplo:&#10;- 10 caixas Papel A4 Report&#10;- 04 galões Sabonete Líquido 5L Erva Doce&#10;- 20 fardos Papel Toalha Interfolha&#10;- 05 fardos Café Bom Jesus 500g"></textarea>
+          <div class="quick-quote-actions">
+            <button type="button" class="btn-send-list" id="btn-send-quick-list">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+              </svg>
+              Enviar Lista para Cotação WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <img src="assets/images/flyer_16.46.32_1.jpeg" alt="Tudo o que seu escritório precisa" style="max-height: 230px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); object-fit: cover;">
+        <span style="font-size: 0.75rem; color: #8BA4C4; margin-top: 0.5rem;">Cotação rápida sem compromisso</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO DE PRODUTOS B2B -->
+  <main class="catalog-section" id="catalog-section">
+    <div class="container">
+      <div class="catalog-header">
+        <div class="catalog-header-title">
+          <h2 id="category-title">Todos os Materiais & Suprimentos</h2>
+          <p>Selecione os produtos e as embalagens corporativas para compor sua lista de cotação.</p>
+        </div>
+        <div class="catalog-counter-badge" id="products-count">Carregando catálogo...</div>
+      </div>
+
+      <!-- Grid dinâmico populado via JS -->
+      <div class="products-grid" id="products-grid">
+        <!-- Itens inseridos dinamicamente por app.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- DRAWER LATERAL DO CARRINHO DE COTAÇÃO B2B -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Lista de Cotação">
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <h3>Sua Lista de Cotação</h3>
+      </div>
+      <button type="button" class="btn-close-drawer" id="btn-close-drawer" aria-label="Fechar lista">✕</button>
+    </div>
+
+    <div class="cart-drawer-body">
+      <!-- Estado Vazio -->
+      <div class="empty-cart-state" id="empty-cart-state">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <h4>Sua lista está vazia</h4>
+        <p style="font-size: 0.85rem;">Navegue pela vitrine e clique em "Adicionar" nos itens que sua empresa precisa cotar.</p>
+      </div>
+
+      <!-- Lista de Itens do Carrinho -->
+      <div class="cart-items-list" id="cart-items-list"></div>
+    </div>
+
+    <!-- Rodapé e Formulário de Envio -->
+    <div class="cart-drawer-footer" id="cart-footer" style="display: none;">
+      <div class="cart-form-group">
+        <label for="input-company">Nome da Empresa / CNPJ</label>
+        <input type="text" id="input-company" placeholder="Ex: Metalúrgica Silva Ltda">
+      </div>
+
+      <div class="cart-form-group">
+        <label for="input-name">Seu Nome / Departamento</label>
+        <input type="text" id="input-name" placeholder="Ex: Juliana — Compras / Almoxarifado">
+      </div>
+
+      <div class="cart-form-group">
+        <label for="input-city">Cidade / Bairro para Entrega</label>
+        <input type="text" id="input-city" placeholder="Ex: Caxias do Sul / Farroupilha / Bento">
+      </div>
+
+      <div class="cart-form-group">
+        <label for="select-payment">Previsão de Pagamento</label>
+        <select id="select-payment">
+          <option value="Boleto Faturado a Prazo (PJ)">Boleto Faturado a Prazo (PJ)</option>
+          <option value="PIX com Desconto">PIX à Vista (com Desconto)</option>
+          <option value="Cartão de Crédito Corporativo">Cartão de Crédito Corporativo</option>
+        </select>
+      </div>
+
+      <button type="button" class="btn-checkout-whatsapp" id="btn-checkout-whatsapp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+        Solicitar Orçamento via WhatsApp
+      </button>
+      <p class="checkout-disclaimer">Sem taxas. Seus dados são usados exclusivamente para a elaboração da cotação.</p>
+    </div>
+  </aside>
+
+  <!-- BOTÃO FLUTUANTE WHATSAPP -->
+  <a href="https://wa.me/5554999500444?text=Ol%C3%A1%20Universo%20Suprimentos!%20Gostaria%20de%20solicitar%20uma%20cota%C3%A7%C3%A3o%20para%20nossa%20empresa." class="whatsapp-float-btn" target="_blank" rel="noopener" aria-label="Falar com Consultor Comercial">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+    </svg>
+  </a>
+
+  <!-- FOOTER PRINCIPAL -->
+  <footer class="footer-main">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h4>UNIVERSO</h4>
+        <p>
+          A Universo Suprimentos Corporativos é especialista em atender empresas, indústrias, clínicas e comércios com soluções completas de materiais de giro contínuo.
+        </p>
+        <div style="display: flex; gap: 0.75rem; align-items: center; color: #60A5FA; font-size: 0.85rem; font-weight: 600;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <a href="https://instagram.com/universosuprimentos" target="_blank" rel="noopener" style="color: inherit;">@universosuprimentos</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Departamentos</h5>
+        <ul class="footer-links">
+          <li><a href="#catalog-section" onclick="window.universoApp && window.universoApp.toggleProduct && setCategoryFooter('escritorio')">Escritório & Papelaria</a></li>
+          <li><a href="#catalog-section" onclick="window.universoApp && window.universoApp.toggleProduct && setCategoryFooter('higiene')">Higiene & Limpeza</a></li>
+          <li><a href="#catalog-section" onclick="window.universoApp && window.universoApp.toggleProduct && setCategoryFooter('descartaveis')">Descartáveis & Embalagens</a></li>
+          <li><a href="#catalog-section" onclick="window.universoApp && window.universoApp.toggleProduct && setCategoryFooter('copa')">Copa & Cozinha</a></li>
+          <li><a href="#catalog-section" onclick="window.universoApp && window.universoApp.toggleProduct && setCategoryFooter('epis')">Segurança & EPIs</a></li>
+          <li><a href="#catalog-section" onclick="window.universoApp && window.universoApp.toggleProduct && setCategoryFooter('hospitalar')">Linha Hospitalar</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Vantagens PJ</h5>
+        <ul class="footer-links">
+          <li><a href="#quick-quote-section">Envio de Lista Pronta</a></li>
+          <li><a href="#quick-quote-section">Boleto Faturado 14/28 Dias</a></li>
+          <li><a href="#quick-quote-section">Preço Escalonado por Volume</a></li>
+          <li><a href="#quick-quote-section">Entrega Programada Sem Custo</a></li>
+          <li><a href="#quick-quote-section">Cadastro de Empresa Facilitado</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Central de Atendimento</h5>
+        <div class="footer-contact-list">
+          <div class="footer-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #25D366;">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            <span><strong>WhatsApp:</strong> (54) 9 9950-0444</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #60A5FA;">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span><strong>Telefone:</strong> (54) 3419-1112</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #F59E0B;">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>Segunda a Sexta: 08:00 às 18:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <div>
+        © 2026 Universo Suprimentos Corporativos. Todos os direitos reservados.
+      </div>
+      <div>
+        Desenvolvido por <strong>Onira Labs</strong> • Canal Digital Onira.fly
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Principal -->
+  <script src="app.js"></script>
+</body>
+</html>
