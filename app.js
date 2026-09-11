@@ -1,14 +1,13 @@
 /**
  * Universo Suprimentos Corporativos - Vitrine Digital B2B
- * Sistema de Cotação Dinâmica via WhatsApp (Preços sob consulta corporativa)
+ * Sistema de Cotação Dinâmica com Opções (Variações e Observações por Produto)
  */
 
 (function () {
   'use strict';
 
-  // Configurações do WhatsApp Comercial
   const WHATSAPP_PHONE = '5554999500444'; // (54) 9 9950-0444
-  const CART_STORAGE_KEY = 'universo_b2b_quote_cart';
+  const CART_STORAGE_KEY = 'universo_b2b_quote_cart_v2';
 
   // Estado da Aplicação
   let allProducts = [];
@@ -17,6 +16,11 @@
   let activeCategory = 'todos';
   let searchTerm = '';
 
+  // Estado do Modal de Opções
+  let currentProductForOptions = null;
+  let modalSelectedOptions = {};
+  let modalQuantity = 1;
+
   // Elementos DOM
   const productsGrid = document.getElementById('products-grid');
   const productsCountEl = document.getElementById('products-count');
@@ -24,7 +28,7 @@
   const searchInput = document.getElementById('search-input');
   const categoryBtns = document.querySelectorAll('.category-tab-btn');
 
-  // Elementos do Carrinho
+  // Elementos do Carrinho Drawer
   const cartTriggerBtn = document.getElementById('btn-cart-trigger');
   const cartBadgeEl = document.getElementById('cart-badge');
   const cartDrawer = document.getElementById('cart-drawer');
@@ -35,7 +39,20 @@
   const cartFooter = document.getElementById('cart-footer');
   const btnCheckoutWhatsapp = document.getElementById('btn-checkout-whatsapp');
 
-  // Quick List Elements
+  // Elementos do Modal de Opções
+  const modalOverlay = document.getElementById('modal-overlay');
+  const btnCloseModal = document.getElementById('btn-close-modal');
+  const modalProductThumb = document.getElementById('modal-product-thumb');
+  const modalProductTitle = document.getElementById('modal-product-title');
+  const modalProductDesc = document.getElementById('modal-product-desc');
+  const modalOptionsContainer = document.getElementById('modal-options-container');
+  const modalObsText = document.getElementById('modal-obs-text');
+  const modalQtyVal = document.getElementById('modal-qty-val');
+  const btnModalMinus = document.getElementById('btn-modal-minus');
+  const btnModalPlus = document.getElementById('btn-modal-plus');
+  const btnConfirmAdd = document.getElementById('btn-confirm-add');
+
+  // Quick List
   const quickListText = document.getElementById('quick-list-text');
   const btnSendQuickList = document.getElementById('btn-send-quick-list');
   const btnHeaderUpload = document.getElementById('btn-header-upload');
@@ -48,7 +65,7 @@
     updateCartUI();
   }
 
-  // Carregar produtos do JSON
+  // Carregar produtos
   async function loadProducts() {
     try {
       const response = await fetch('products.json');
@@ -57,25 +74,21 @@
       filteredProducts = [...allProducts];
       renderProducts();
     } catch (error) {
-      console.error('Erro carregando produtos:', error);
+      console.error('Erro ao carregar catálogo:', error);
       productsGrid.innerHTML = `
-        <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #64748B;">
+        <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #6C757D;">
           <p>Ocorreu um erro ao carregar os itens do catálogo. Por favor, recarregue a página.</p>
         </div>
       `;
     }
   }
 
-  // Renderizar catálogo de produtos
+  // Renderizar catálogo
   function renderProducts() {
     if (!filteredProducts.length) {
       productsGrid.innerHTML = `
-        <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: #64748B;">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 0.75rem; color: #94A3B8;">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <h3 style="color: #0A2240; margin-bottom: 0.5rem;">Nenhum produto encontrado</h3>
+        <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: #6C757D;">
+          <h3 style="color: #1C1E21; margin-bottom: 0.5rem;">Nenhum produto encontrado</h3>
           <p style="font-size: 0.9rem;">Não encontramos nenhum item para "${searchTerm}". Tente outra busca ou envie sua lista personalizada.</p>
         </div>
       `;
@@ -86,9 +99,9 @@
     productsCountEl.textContent = `${filteredProducts.length} itens`;
 
     const html = filteredProducts.map(product => {
-      const isAdded = cart.some(item => item.id === product.id);
+      const inCartCount = cart.filter(item => item.productId === product.id).reduce((sum, i) => sum + i.quantity, 0);
       return `
-        <article class="product-card" data-id="${product.id}">
+        <article class="product-card" data-id="${product.id}" onclick="window.universoApp.openProductModal('${product.id}')">
           <div class="product-thumb-box">
             ${product.badge ? `<span class="product-badge-tag">${product.badge}</span>` : ''}
             <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='assets/images/produtos/folhas_report_a4.jpg'">
@@ -114,13 +127,13 @@
                   Sob Consulta
                 </span>
               </div>
-              <button class="btn-add-quote ${isAdded ? 'added' : ''}" data-id="${product.id}" onclick="window.universoApp.toggleProduct('${product.id}')">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  ${isAdded 
+              <button type="button" class="btn-open-options ${inCartCount > 0 ? 'added' : ''}" onclick="event.stopPropagation(); window.universoApp.openProductModal('${product.id}')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  ${inCartCount > 0 
                     ? '<polyline points="20 6 9 17 4 12"></polyline>' 
                     : '<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>'}
                 </svg>
-                <span>${isAdded ? 'Na Lista' : 'Adicionar'}</span>
+                <span>${inCartCount > 0 ? `Na Lista (${inCartCount})` : 'Opções & Cotar'}</span>
               </button>
             </div>
           </div>
@@ -131,7 +144,6 @@
     productsGrid.innerHTML = html;
   }
 
-  // Obter nome legível da categoria
   function getCategoryName(cat) {
     const names = {
       'escritorio': 'Escritório & Papelaria',
@@ -145,7 +157,6 @@
     return names[cat] || 'Geral';
   }
 
-  // Filtrar produtos
   function applyFilters() {
     filteredProducts = allProducts.filter(p => {
       const matchCat = activeCategory === 'todos' || p.category === activeCategory;
@@ -155,11 +166,9 @@
         p.category.toLowerCase().includes(searchTerm);
       return matchCat && matchSearch;
     });
-
     renderProducts();
   }
 
-  // Manipulação de Categorias
   function setCategory(cat, btn) {
     activeCategory = cat;
     categoryBtns.forEach(b => b.classList.remove('active'));
@@ -176,58 +185,120 @@
       'informatica': 'Informática & Periféricos de Escritório'
     };
     categoryTitleEl.textContent = catLabels[cat] || 'Catálogo de Produtos';
-
     applyFilters();
   }
 
-  // Alternar produto no carrinho de cotação
-  function toggleProduct(productId) {
-    const existingIndex = cart.findIndex(item => item.id === productId);
+  // ==========================================================================
+  // MODAL DE OPÇÕES DO PRODUTO (Estilo Gastro / Onira.fly)
+  // ==========================================================================
+  function openProductModal(productId) {
+    const product = allProducts.find(p => p.id === productId);
+    if (!product) return;
+
+    currentProductForOptions = product;
+    modalQuantity = 1;
+    modalSelectedOptions = {};
+
+    modalProductThumb.src = product.image;
+    modalProductThumb.onerror = () => { modalProductThumb.src = 'assets/images/produtos/folhas_report_a4.jpg'; };
+    modalProductTitle.textContent = product.name;
+    modalProductDesc.textContent = product.description;
+    modalObsText.value = '';
+    modalQtyVal.textContent = '1';
+
+    // Construir opções dinamicamente
+    if (product.options && product.options.length > 0) {
+      modalOptionsContainer.innerHTML = product.options.map((group, gIdx) => {
+        // Selecionar o primeiro item por padrão se for obrigatório
+        modalSelectedOptions[group.name] = group.choices[0];
+
+        const choicesHtml = group.choices.map((choice, cIdx) => `
+          <label class="option-choice-label">
+            <span class="choice-text">
+              <input type="radio" name="opt_group_${gIdx}" value="${choice}" ${cIdx === 0 ? 'checked' : ''} onchange="window.universoApp.setOption('${group.name}', '${choice}')">
+              ${choice}
+            </span>
+          </label>
+        `).join('');
+
+        return `
+          <div class="option-group">
+            <div class="option-group-title">
+              <span>${group.name}</span>
+              ${group.required ? '<span class="option-group-badge">Obrigatório</span>' : '<span class="option-group-badge">Opcional</span>'}
+            </div>
+            <div class="option-choices-list">
+              ${choicesHtml}
+            </div>
+          </div>
+        `;
+      }).join('');
+    } else {
+      modalOptionsContainer.innerHTML = `
+        <div style="padding: 0.5rem 0; color: #5C6370; font-size: 0.85rem;">
+          Item pronto para adicionar em caixas fechadas ou volumes corporativos.
+        </div>
+      `;
+    }
+
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeProductModal() {
+    modalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    currentProductForOptions = null;
+  }
+
+  function setOption(groupName, choice) {
+    modalSelectedOptions[groupName] = choice;
+  }
+
+  function changeModalQty(delta) {
+    modalQuantity = Math.max(1, modalQuantity + delta);
+    modalQtyVal.textContent = modalQuantity;
+  }
+
+  // Confirmar e Adicionar à Lista de Cotação
+  function confirmAddOptions() {
+    if (!currentProductForOptions) return;
+
+    const obs = modalObsText.value.trim();
+    const optionsArray = Object.entries(modalSelectedOptions).map(([key, val]) => `${key}: ${val}`);
+
+    // Gerar chave única para itens com diferentes opções
+    const cartItemId = `${currentProductForOptions.id}_${JSON.stringify(modalSelectedOptions)}_${obs}`;
+
+    const existingIndex = cart.findIndex(item => item.cartItemId === cartItemId);
 
     if (existingIndex > -1) {
-      cart.splice(existingIndex, 1);
+      cart[existingIndex].quantity += modalQuantity;
     } else {
-      const product = allProducts.find(p => p.id === productId);
-      if (product) {
-        cart.push({
-          id: product.id,
-          name: product.name,
-          package: product.package,
-          image: product.image,
-          quantity: 1
-        });
-      }
-    }
-
-    saveCartToStorage();
-    updateCartUI();
-    renderProducts(); // Atualiza os botões "Na Lista / Adicionar"
-  }
-
-  // Alterar quantidade de item no carrinho
-  function changeQuantity(productId, delta) {
-    const item = cart.find(i => i.id === productId);
-    if (!item) return;
-
-    item.quantity += delta;
-    if (item.quantity <= 0) {
-      cart = cart.filter(i => i.id !== productId);
+      cart.push({
+        cartItemId,
+        productId: currentProductForOptions.id,
+        name: currentProductForOptions.name,
+        package: currentProductForOptions.package,
+        image: currentProductForOptions.image,
+        quantity: modalQuantity,
+        options: optionsArray,
+        obs: obs
+      });
     }
 
     saveCartToStorage();
     updateCartUI();
     renderProducts();
+    closeProductModal();
+
+    // Abrir o carrinho para dar feedback imediato de sucesso
+    openCartDrawer();
   }
 
-  // Remover item do carrinho
-  function removeItem(productId) {
-    cart = cart.filter(i => i.id !== productId);
-    saveCartToStorage();
-    updateCartUI();
-    renderProducts();
-  }
-
-  // Atualizar a interface do Carrinho de Cotação
+  // ==========================================================================
+  // CARRINHO DRAWER (SEM ROLAGEM INDESEJADA NOS ITENS)
+  // ==========================================================================
   function updateCartUI() {
     const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartBadgeEl.textContent = totalCount;
@@ -243,30 +314,59 @@
     cartFooter.style.display = 'block';
 
     const html = cart.map(item => `
-      <div class="cart-item-row" data-id="${item.id}">
+      <div class="cart-item-row" data-cart-id="${item.cartItemId}">
         <img src="${item.image}" alt="${item.name}" class="cart-item-thumb">
         <div class="cart-item-details">
-          <div class="cart-item-name" title="${item.name}">${item.name}</div>
-          <div class="cart-item-unit">${item.package}</div>
-          <div class="cart-qty-control">
-            <button class="btn-qty" onclick="window.universoApp.changeQuantity('${item.id}', -1)">-</button>
-            <span class="qty-display">${item.quantity}</span>
-            <button class="btn-qty" onclick="window.universoApp.changeQuantity('${item.id}', 1)">+</button>
+          <div class="cart-item-name">${item.name}</div>
+          ${item.options && item.options.length ? `
+            <div class="cart-item-options-summary">
+              ${item.options.map(opt => `• ${opt}`).join('<br>')}
+            </div>
+          ` : `
+            <div class="cart-item-options-summary">• ${item.package}</div>
+          `}
+          ${item.obs ? `<div class="cart-item-obs">Obs: "${item.obs}"</div>` : ''}
+          <div class="cart-item-bottom-row">
+            <div class="cart-qty-control">
+              <button type="button" class="btn-qty" onclick="window.universoApp.changeCartItemQty('${item.cartItemId}', -1)">-</button>
+              <span class="qty-display">${item.quantity}</span>
+              <button type="button" class="btn-qty" onclick="window.universoApp.changeCartItemQty('${item.cartItemId}', 1)">+</button>
+            </div>
+            <button type="button" class="btn-remove-item" onclick="window.universoApp.removeCartItem('${item.cartItemId}')" title="Remover item">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+            </button>
           </div>
         </div>
-        <button class="btn-remove-item" onclick="window.universoApp.removeItem('${item.id}')" title="Remover da cotação">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="3 6 5 6 21 6"></polyline>
-            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-          </svg>
-        </button>
       </div>
     `).join('');
 
     cartItemsList.innerHTML = html;
   }
 
-  // Abrir / Fechar Drawer do Carrinho
+  function changeCartItemQty(cartItemId, delta) {
+    const item = cart.find(i => i.cartItemId === cartItemId);
+    if (!item) return;
+
+    item.quantity += delta;
+    if (item.quantity <= 0) {
+      cart = cart.filter(i => i.cartItemId !== cartItemId);
+    }
+
+    saveCartToStorage();
+    updateCartUI();
+    renderProducts();
+  }
+
+  function removeCartItem(cartItemId) {
+    cart = cart.filter(i => i.cartItemId !== cartItemId);
+    saveCartToStorage();
+    updateCartUI();
+    renderProducts();
+  }
+
   function openCartDrawer() {
     cartDrawer.classList.add('open');
     cartOverlay.classList.add('open');
@@ -279,10 +379,10 @@
     document.body.style.overflow = '';
   }
 
-  // Finalizar e Enviar Cotação para o WhatsApp
+  // Finalizar cotação corporativa via WhatsApp
   function checkoutWhatsapp() {
     if (cart.length === 0) {
-      alert('Sua lista de cotação está vazia. Adicione itens antes de solicitar!');
+      alert('Sua lista de cotação está vazia. Adicione produtos antes de enviar!');
       return;
     }
 
@@ -291,19 +391,28 @@
     const city = document.getElementById('input-city').value.trim() || 'Região da Serra Gaúcha';
     const paymentPref = document.getElementById('select-payment').value;
 
-    let message = `🏢 *SOLICITAÇÃO DE COTAÇÃO CORPORATIVA — UNIVERSO SUPRIMENTOS*\n\n`;
+    let message = `🏢 *SOLICITAÇÃO DE COTAÇÃO CORPORATIVA — UNIVERSO*\n\n`;
 
     if (companyName) message += `*Empresa:* ${companyName}\n`;
     if (contactPerson) message += `*Responsável:* ${contactPerson}\n`;
-    message += `*Localização:* ${city}\n`;
+    message += `*Local de Entrega:* ${city}\n`;
     message += `*Condição Pretendida:* ${paymentPref}\n\n`;
 
-    message += `📦 *ITENS SELECIONADOS PARA COTAÇÃO:*\n`;
+    message += `📦 *ITENS DA COTAÇÃO:*\n`;
     cart.forEach((item, index) => {
-      message += `${index + 1}. *${item.name}*\n   ↳ Quantidade: *${item.quantity}* (${item.package})\n`;
+      message += `\n${index + 1}. *${item.name}*\n`;
+      message += `   ↳ Quantidade: *${item.quantity}*\n`;
+      if (item.options && item.options.length) {
+        item.options.forEach(opt => {
+          message += `   ↳ ${opt}\n`;
+        });
+      }
+      if (item.obs) {
+        message += `   ↳ Obs: _${item.obs}_\n`;
+      }
     });
 
-    message += `\n💬 _Olá time Universo! Gostaria de receber a cotação com as melhores condições para faturamento corporativo._`;
+    message += `\n💬 _Olá time Universo! Gostaria de receber a cotação com as melhores condições e prazo de entrega faturado para PJ._`;
 
     const encodedMsg = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMsg}`;
@@ -311,19 +420,19 @@
     window.open(whatsappUrl, '_blank');
   }
 
-  // Envio Rápido de Lista Copiada/Colada
+  // Envio de Lista Pronta
   function sendQuickList() {
     const text = quickListText.value.trim();
     if (!text) {
-      alert('Por favor, cole ou digite os itens da sua lista no campo acima.');
+      alert('Por favor, digite ou cole a sua lista no campo indicado.');
       quickListText.focus();
       return;
     }
 
     let message = `📋 *SOLICITAÇÃO DE COTAÇÃO VIA LISTA PRONTA — UNIVERSO*\n\n`;
-    message += `Olá! Segue a relação de materiais que precisamos cotar para nossa empresa:\n\n`;
+    message += `Olá! Segue a relação de materiais corporativos que precisamos cotar:\n\n`;
     message += `"${text}"\n\n`;
-    message += `Por favor, nos enviem uma proposta com valores faturados para PJ e prazo de entrega.`;
+    message += `Por favor, nos enviem os valores com faturamento PJ e prazo de entrega.`;
 
     const encodedMsg = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMsg}`;
@@ -331,51 +440,53 @@
     window.open(whatsappUrl, '_blank');
   }
 
-  // Armazenamento Local do Carrinho
   function saveCartToStorage() {
     try {
       localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
     } catch (e) {
-      console.warn('Erro ao salvar no localStorage', e);
+      console.warn('Erro salvando carrinho:', e);
     }
   }
 
   function loadCartFromStorage() {
     try {
       const saved = localStorage.getItem(CART_STORAGE_KEY);
-      if (saved) {
-        cart = JSON.parse(saved);
-      }
+      if (saved) cart = JSON.parse(saved);
     } catch (e) {
       cart = [];
     }
   }
 
-  // Event Listeners
   function setupEventListeners() {
-    // Busca
     searchInput.addEventListener('input', (e) => {
       searchTerm = e.target.value.toLowerCase().trim();
       applyFilters();
     });
 
-    // Filtros de Categoria
     categoryBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         setCategory(btn.dataset.category, btn);
       });
     });
 
-    // Gaveta / Drawer
+    // Drawer
     cartTriggerBtn.addEventListener('click', openCartDrawer);
     btnCloseDrawer.addEventListener('click', closeCartDrawer);
     cartOverlay.addEventListener('click', closeCartDrawer);
 
-    // Botões de Cotação
+    // Modal de Opções
+    btnCloseModal.addEventListener('click', closeProductModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeProductModal();
+    });
+    btnModalMinus.addEventListener('click', () => changeModalQty(-1));
+    btnModalPlus.addEventListener('click', () => changeModalQty(1));
+    btnConfirmAdd.addEventListener('click', confirmAddOptions);
+
+    // Cotação
     btnCheckoutWhatsapp.addEventListener('click', checkoutWhatsapp);
     btnSendQuickList.addEventListener('click', sendQuickList);
 
-    // Botão Header Upload
     if (btnHeaderUpload) {
       btnHeaderUpload.addEventListener('click', () => {
         document.getElementById('quick-quote-section').scrollIntoView({ behavior: 'smooth' });
@@ -383,24 +494,23 @@
       });
     }
 
-    // Fechar com tecla ESC
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && cartDrawer.classList.contains('open')) {
-        closeCartDrawer();
+      if (e.key === 'Escape') {
+        if (modalOverlay.classList.contains('open')) closeProductModal();
+        else if (cartDrawer.classList.contains('open')) closeCartDrawer();
       }
     });
   }
 
-  // Expor métodos para o escopo global do botão inline
   window.universoApp = {
-    toggleProduct,
-    changeQuantity,
-    removeItem,
+    openProductModal,
+    setOption,
+    changeCartItemQty,
+    removeCartItem,
     openCartDrawer,
     closeCartDrawer
   };
 
-  // Inicializar quando o DOM estiver pronto
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
