@@ -58,6 +58,9 @@
   const quickListText = document.getElementById('quick-list-text');
   const btnSendQuickList = document.getElementById('btn-send-quick-list');
   const btnHeaderUpload = document.getElementById('btn-header-upload');
+  const btnClearCartGlobal = document.getElementById('btn-clear-cart-global');
+  const btnClearCartDrawer = document.getElementById('btn-clear-cart-drawer');
+  const btnDirectWhatsappQuote = document.getElementById('btn-direct-whatsapp-quote');
 
   // Inicialização
   async function init() {
@@ -222,11 +225,6 @@
         <div class="category-focus-header category-hero-banner" style="--cat-bg: url('${catObj ? catObj.image : 'assets/images/produtos/folhas_report_a4.jpg'}')">
           <div class="cat-focus-overlay"></div>
           <div class="cat-focus-info">
-            <div class="cat-mini-hero-icon-filter" style="width: 54px; height: 54px;">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-              </svg>
-            </div>
             <div class="cat-hero-text">
               <div class="cat-hero-tag-row">
                 <span class="cat-badge-label">DEPARTAMENTO CORPORATIVO</span>
@@ -256,14 +254,9 @@
 
       railsHtml += `
         <section class="streaming-rail-section" id="rail-${cat.id}">
-          <div class="streaming-rail-header category-mini-hero" style="--cat-bg: url('${cat.image}')">
+          <div class="streaming-rail-header category-mini-hero clickable-rail-header" style="--cat-bg: url('${cat.image}')" onclick="window.universoApp.setCategory('${cat.id}')" title="Clique para explorar todos os itens de ${cat.name} em grade">
             <div class="cat-mini-hero-overlay"></div>
             <div class="rail-title-box">
-              <div class="cat-mini-hero-icon-filter" title="Filtro do Departamento ${cat.name}">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                </svg>
-              </div>
               <div class="cat-mini-hero-meta">
                 <div class="cat-tag-badge-line">
                   <span class="cat-badge-label">CATEGORIA</span>
@@ -273,10 +266,10 @@
                 <span class="rail-subtitle-desktop">${cat.subtitle}</span>
               </div>
             </div>
-            <button type="button" class="rail-see-all-btn" onclick="window.universoApp.setCategory('${cat.id}')">
-              <span>Conhecer Categoria</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </button>
+            <div class="rail-see-all-btn minimal-arrow-btn">
+              <span class="btn-label-desktop">Explorar</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </div>
           </div>
 
           <div class="streaming-rail-wrapper">
@@ -485,6 +478,14 @@
     const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartBadgeEl.textContent = totalCount;
 
+    // Atualizar visibilidade dos botões de limpar pedido (fora e dentro do carrinho)
+    if (btnClearCartGlobal) {
+      btnClearCartGlobal.style.display = cart.length > 0 ? 'inline-flex' : 'none';
+    }
+    if (btnClearCartDrawer) {
+      btnClearCartDrawer.style.display = cart.length > 0 ? 'inline-flex' : 'none';
+    }
+
     if (cart.length === 0) {
       cartTriggerBtn.classList.remove('has-items');
       emptyCartState.style.display = 'block';
@@ -512,12 +513,12 @@
           ${item.obs ? `<div class="cart-item-obs">Obs: "${item.obs}"</div>` : ''}
           <div class="cart-item-bottom-row">
             <div class="cart-qty-control">
-              <button type="button" class="btn-qty" onclick="window.universoApp.changeCartItemQty('${item.cartItemId}', -1)">-</button>
+              <button type="button" class="btn-qty" onclick="event.stopPropagation(); window.universoApp.changeCartItemQty('${item.cartItemId}', -1)">-</button>
               <span class="qty-display">${item.quantity}</span>
-              <button type="button" class="btn-qty" onclick="window.universoApp.changeCartItemQty('${item.cartItemId}', 1)">+</button>
+              <button type="button" class="btn-qty" onclick="event.stopPropagation(); window.universoApp.changeCartItemQty('${item.cartItemId}', 1)">+</button>
             </div>
-            <button type="button" class="btn-remove-item" onclick="window.universoApp.removeCartItem('${item.cartItemId}')" title="Remover item">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <button type="button" class="btn-remove-item" onclick="event.stopPropagation(); window.universoApp.removeCartItem('${item.cartItemId}')" title="Remover item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="3 6 5 6 21 6"></polyline>
                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
               </svg>
@@ -549,6 +550,44 @@
     saveCartToStorage();
     updateCartUI();
     renderProducts();
+  }
+
+  function clearCart() {
+    if (cart.length === 0) return;
+    if (confirm('Deseja limpar todos os itens da sua lista de cotação?')) {
+      cart = [];
+      saveCartToStorage();
+      updateCartUI();
+      renderProducts();
+    }
+  }
+
+  // Cotação Direta do Modal para o WhatsApp
+  function quoteDirectOnWhatsApp() {
+    if (!currentProductForOptions) return;
+
+    const obs = modalObsText.value.trim();
+    const optionsArray = Object.entries(modalSelectedOptions).map(([key, val]) => `${key}: ${val}`);
+
+    let msg = `*COTAÇÃO DIRETA VIA CATÁLOGO • UNIVERSO SUPRIMENTOS*\n`;
+    msg += `────────────────────────────\n\n`;
+    msg += `Olá! Gostaria de cotar este item com entrega para empresa:\n\n`;
+    msg += `📦 *Produto:* ${currentProductForOptions.name}\n`;
+    msg += `▫️ *Qtd Solicitada:* ${modalQuantity} ${currentProductForOptions.package ? `(${currentProductForOptions.package})` : ''}\n`;
+    if (optionsArray.length) {
+      optionsArray.forEach(opt => {
+        msg += `▫️ ${opt}\n`;
+      });
+    }
+    if (obs) {
+      msg += `▫️ _Obs: ${obs}_\n`;
+    }
+    msg += `\n🏢 *Condição Desejada:* Faturamento PJ / Boleto a Prazo\n`;
+    msg += `Favor me informar disponibilidade e melhor condição comercial!`;
+
+    const encoded = encodeURIComponent(msg);
+    window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encoded}`, '_blank');
+    closeProductModal();
   }
 
   function openCartDrawer() {
@@ -860,6 +899,8 @@
     setOption,
     changeCartItemQty,
     removeCartItem,
+    clearCart,
+    quoteDirectOnWhatsApp,
     openCartDrawer,
     closeCartDrawer,
     nextOfferSlide,
