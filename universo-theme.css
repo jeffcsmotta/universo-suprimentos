@@ -1470,46 +1470,44 @@ a {
   transform: translateX(4px);
 }
 
-/* BANNER EXPANDIDO NO MODO FOCO DE CATEGORIA */
+/* BANNER EXPANDIDO NO MODO FOCO DE CATEGORIA (CONTRASTE MÁXIMO E LEGIBILIDADE) */
 .category-hero-banner {
-  background-color: #0F172A;
-  background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.96) 0%, rgba(15, 23, 42, 0.85) 50%, rgba(15, 23, 42, 0.7) 100%), var(--cat-bg);
-  background-size: cover;
-  background-position: center right;
+  background-color: #0F172A !important;
+  background-image: 
+    linear-gradient(90deg, 
+      rgba(15, 23, 42, 0.98) 0%, 
+      rgba(15, 23, 42, 0.94) 35%, 
+      rgba(15, 23, 42, 0.82) 65%, 
+      rgba(15, 23, 42, 0.55) 100%
+    ), 
+    var(--cat-bg) !important;
+  background-size: cover !important;
+  background-position: center right !important;
   border: 1.5px solid #334155 !important;
-  color: #FFFFFF;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
-  padding: 1.5rem 1.75rem !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.35) !important;
+  padding: 1.65rem 1.85rem !important;
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-lg);
+  margin-bottom: 1.5rem !important;
 }
 
 .cat-focus-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 90% 50%, rgba(0, 102, 255, 0.2) 0%, transparent 60%);
+  background: linear-gradient(to right, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 50%, transparent 100%);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   pointer-events: none;
 }
 
-.cat-hero-thumb {
-  width: 80px;
-  height: 80px;
-  background: #FFFFFF;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  border-radius: var(--radius-md);
-  padding: 6px;
+.cat-focus-info {
   display: flex;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-  flex-shrink: 0;
-}
-
-.cat-hero-thumb img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 2;
 }
 
 .cat-hero-text {
@@ -1521,46 +1519,46 @@ a {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  margin-bottom: 0.35rem;
-}
-
-.cat-highlight-pill {
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: #4ADE80;
-  background: rgba(34, 197, 94, 0.15);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  padding: 0.15rem 0.55rem;
-  border-radius: var(--radius-pill);
+  margin-bottom: 0.45rem;
 }
 
 .cat-hero-title {
-  font-size: 1.6rem !important;
-  font-weight: 800;
+  font-size: 1.65rem !important;
+  font-weight: 800 !important;
   color: #FFFFFF !important;
-  margin-bottom: 0.25rem;
+  margin: 0 0 0.35rem 0 !important;
   letter-spacing: -0.01em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
 }
 
 .cat-hero-sub {
-  font-size: 0.88rem !important;
-  color: #CBD5E1 !important;
-  margin: 0;
+  font-size: 0.9rem !important;
+  color: #E2E8F0 !important;
+  margin: 0 !important;
+  font-weight: 500;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
 }
 
 .category-hero-banner .btn-back-streaming {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  color: #FFFFFF;
-  font-size: 0.85rem;
-  font-weight: 700;
-  padding: 0.6rem 1.25rem;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+  color: #FFFFFF !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  padding: 0.65rem 1.3rem !important;
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: all var(--transition-fast);
   position: relative;
   z-index: 2;
   backdrop-filter: blur(8px);
+}
+
+.category-hero-banner .btn-back-streaming:hover {
+  background: #0066FF !important;
+  border-color: #0066FF !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.5);
 }
 
 .category-hero-banner .btn-back-streaming:hover {
@@ -1641,8 +1639,7 @@ a {
   grid-column: 1/-1;
 }
 
-.search-results-header,
-.category-focus-header {
+.search-results-header {
   grid-column: 1/-1;
   display: flex;
   align-items: center;
@@ -1656,16 +1653,14 @@ a {
   flex-wrap: wrap;
 }
 
-.search-results-header h4,
-.category-focus-header h3 {
+.search-results-header h4 {
   font-size: 1.1rem;
   font-weight: 800;
   color: var(--text-main);
   margin-bottom: 0.15rem;
 }
 
-.search-results-sub,
-.category-focus-header p {
+.search-results-sub {
   font-size: 0.82rem;
   color: var(--text-muted);
 }
@@ -2266,6 +2261,128 @@ a {
   box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
 }
 
+/* MODAL DE CONFIRMAÇÃO PARA LIMPAR PEDIDO */
+.modal-confirm-card {
+  max-width: 440px !important;
+  text-align: center;
+}
+
+.modal-confirm-icon-wrap {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem auto 1rem;
+}
+
+.modal-confirm-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 0.5rem;
+}
+
+.modal-confirm-desc {
+  font-size: 0.88rem;
+  color: #64748B;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.modal-confirm-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.btn-cancel-modal {
+  padding: 0.75rem 1.25rem;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  color: #475569;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-cancel-modal:hover {
+  background: #E2E8F0;
+  color: #1E293B;
+}
+
+.btn-confirm-clear {
+  padding: 0.75rem 1.35rem;
+  background: #EF4444;
+  border: 1.5px solid #EF4444;
+  color: #FFFFFF;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
+}
+
+.btn-confirm-clear:hover {
+  background: #DC2626;
+  border-color: #DC2626;
+  transform: translateY(-1px);
+}
+
+/* MODAL DE COTAÇÃO RÁPIDA (COLA DO CLIENTE) */
+.quick-quote-modal-card {
+  max-width: 580px !important;
+}
+
+.quick-quote-modal-card .modal-body {
+  padding: 1.5rem;
+}
+
+.quick-quote-modal-textarea {
+  width: 100%;
+  height: 160px;
+  padding: 0.95rem;
+  border: 2px solid #CBD5E1;
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+  font-family: inherit;
+  color: #0F172A;
+  background: #F8FAFC;
+  resize: vertical;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.quick-quote-modal-textarea:focus {
+  border-color: #0066FF;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.15);
+}
+
+.quick-quote-tip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #64748B;
+  margin-top: 0.65rem;
+}
+
+.quick-quote-tip svg {
+  color: #0066FF;
+  flex-shrink: 0;
+}
+
 /* ==========================================================================
    DRAWER DO CARRINHO (SEM BARRA DE ROLAGEM INDESEJADA NOS ITENS)
    ========================================================================== */
@@ -2382,15 +2499,15 @@ a {
   color: #F87171;
 }
 
-/* Botão Limpar Pedido Global no Header (Entre Cotar Minha Lista e Lista de Cotação) */
+/* Botão Limpar Pedido Global no Header: Outline vermelho puro SEM preenchimento rosa */
 .btn-clear-cart-global {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  background: #FFF5F5;
-  color: #DC2626;
-  border: 1.5px solid #FCA5A5;
-  padding: 0.6rem 0.95rem;
+  background: transparent !important;
+  color: #EF4444 !important;
+  border: 1.5px solid #EF4444 !important;
+  padding: 0.55rem 0.95rem;
   border-radius: var(--radius-md);
   font-weight: 700;
   font-size: 0.84rem;
@@ -2399,10 +2516,10 @@ a {
 }
 
 .btn-clear-cart-global:hover {
-  background: #FEE2E2;
-  border-color: #EF4444;
-  color: #B91C1C;
-  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+  background: rgba(239, 68, 68, 0.08) !important;
+  border-color: #DC2626 !important;
+  color: #DC2626 !important;
+  box-shadow: 0 2px 10px rgba(239, 68, 68, 0.18);
   transform: translateY(-1px);
 }
 

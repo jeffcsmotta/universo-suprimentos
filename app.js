@@ -55,13 +55,26 @@
   const btnModalPlus = document.getElementById('btn-modal-plus');
   const btnConfirmAdd = document.getElementById('btn-confirm-add');
 
-  // Quick List
+  // Quick List & Novos Modais
   const quickListText = document.getElementById('quick-list-text');
   const btnSendQuickList = document.getElementById('btn-send-quick-list');
   const btnHeaderUpload = document.getElementById('btn-header-upload');
   const btnClearCartGlobal = document.getElementById('btn-clear-cart-global');
   const btnClearCartDrawer = document.getElementById('btn-clear-cart-drawer');
   const btnDirectWhatsappQuote = document.getElementById('btn-direct-whatsapp-quote');
+
+  // Modal Limpar Pedido
+  const modalClearCart = document.getElementById('modal-clear-cart');
+  const btnCloseClearModal = document.getElementById('btn-close-clear-modal');
+  const btnCancelClearCart = document.getElementById('btn-cancel-clear-cart');
+  const btnConfirmClearCart = document.getElementById('btn-confirm-clear-cart');
+
+  // Modal Cotar Lista Pronta
+  const modalQuickQuote = document.getElementById('modal-quick-quote');
+  const btnCloseQuickModal = document.getElementById('btn-close-quick-modal');
+  const btnCancelQuickModal = document.getElementById('btn-cancel-quick-modal');
+  const btnModalSendQuick = document.getElementById('btn-modal-send-quick');
+  const modalQuickQuoteText = document.getElementById('modal-quick-quote-text');
 
   // Inicialização
   async function init() {
@@ -96,7 +109,7 @@
       name: 'Escritório & Papelaria', 
       icon: '📄', 
       subtitle: 'Papéis A4 Suzano/Chamex, pastas, canetas, toners e arquivos',
-      image: 'assets/images/produtos/folhas_report_a4.jpg',
+      image: 'assets/images/bg_cat_escritorio.jpg',
       highlight: 'Caixas Fechadas 5.000 fls'
     },
     { 
@@ -104,7 +117,7 @@
       name: 'Higiene & Limpeza', 
       icon: '🧼', 
       subtitle: 'Papel toalha interfolha, sabonete 5L, álcool 70%, desinfetantes e químicos',
-      image: 'assets/images/produtos/papel_toalha_interfolha.jpg',
+      image: 'assets/images/bg_cat_higiene.jpg',
       highlight: 'Uso Profissional & Fardos'
     },
     { 
@@ -112,7 +125,7 @@
       name: 'Descartáveis & Embalagens', 
       icon: '🥤', 
       subtitle: 'Copos 180ml/50ml, bobinas plásticas, sacos de lixo e filmes',
-      image: 'assets/images/produtos/copos_descartaveis.jpg',
+      image: 'assets/images/bg_cat_descartaveis.jpg',
       highlight: 'Tiradores de Copos & Bobinas'
     },
     { 
@@ -120,7 +133,7 @@
       name: 'Copa & Cozinha', 
       icon: '☕', 
       subtitle: 'Café Bom Jesus, Melitta, açúcar cristal/sachê, chás e mexedores',
-      image: 'assets/images/produtos/cafe_bom_jesus.jpg',
+      image: 'assets/images/bg_cat_copa.jpg',
       highlight: 'Fardos p/ Empresas & Refeitórios'
     },
     { 
@@ -128,7 +141,7 @@
       name: 'Segurança & EPIs', 
       icon: '🦺', 
       subtitle: 'Luvas látex/nitrílicas, máscaras cirúrgicas, toucas e proteção individual',
-      image: 'assets/images/produtos/luva_nitrilica.jpg',
+      image: 'assets/images/bg_cat_epis.jpg',
       highlight: 'Norma NR & Certificação'
     },
     { 
@@ -136,7 +149,7 @@
       name: 'Linha Hospitalar', 
       icon: '🏥', 
       subtitle: 'Aventais descartáveis, lençóis de papel, caixas Descarpack e biossegurança',
-      image: 'assets/images/produtos/caixa_descarpack.jpg',
+      image: 'assets/images/bg_cat_hospitalar.jpg',
       highlight: 'Clínicas & Laboratórios'
     },
     { 
@@ -144,7 +157,7 @@
       name: 'Informática & Conectividade', 
       icon: '💻', 
       subtitle: 'Pilhas alcalinas, toners para impressora, mouses, teclados e cabos',
-      image: 'assets/images/produtos/toner_impressora.jpg',
+      image: 'assets/images/bg_cat_informatica.jpg',
       highlight: 'Periféricos & Suprimentos TI'
     }
   ];
@@ -583,14 +596,72 @@
     renderProducts();
   }
 
+  // MODAL LIMPAR PEDIDO
+  function openClearCartModal() {
+    if (cart.length === 0) return;
+    if (modalClearCart) {
+      modalClearCart.classList.add('open');
+    }
+  }
+
+  function closeClearCartModal() {
+    if (modalClearCart) {
+      modalClearCart.classList.remove('open');
+    }
+  }
+
+  function confirmClearCartAction() {
+    cart = [];
+    saveCartToStorage();
+    updateCartUI();
+    renderProducts();
+    closeClearCartModal();
+    closeCartDrawer();
+  }
+
   function clearCart() {
     if (cart.length === 0) return;
-    if (confirm('Deseja limpar todos os itens da sua lista de cotação?')) {
-      cart = [];
-      saveCartToStorage();
-      updateCartUI();
-      renderProducts();
+    openClearCartModal();
+  }
+
+  // MODAL COTAR MINHA LISTA PRONTA (COLA DO CLIENTE)
+  function openQuickQuoteModal() {
+    if (modalQuickQuote) {
+      modalQuickQuote.classList.add('open');
+      setTimeout(() => {
+        if (modalQuickQuoteText) modalQuickQuoteText.focus();
+      }, 150);
     }
+  }
+
+  function closeQuickQuoteModal() {
+    if (modalQuickQuote) {
+      modalQuickQuote.classList.remove('open');
+    }
+  }
+
+  function sendModalQuickQuote() {
+    if (!modalQuickQuoteText) return;
+    const text = modalQuickQuoteText.value.trim();
+    if (!text) {
+      alert('Por favor, cole ou digite sua lista de compras antes de enviar.');
+      modalQuickQuoteText.focus();
+      return;
+    }
+
+    let message = `📋 *SOLICITAÇÃO DE COTAÇÃO VIA LISTA PRONTA — UNIVERSO SUPRIMENTOS*\n`;
+    message += `────────────────────────────\n\n`;
+    message += `Olá! Segue a relação de materiais corporativos que precisamos orçar:\n\n`;
+    message += `"${text}"\n\n`;
+    message += `────────────────────────────\n`;
+    message += `🏢 *Condição Desejada:* Faturamento PJ / Boleto a Prazo\n`;
+    message += `Favor nos responder com os valores disponíveis e previsão de entrega!`;
+
+    const encodedMsg = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMsg}`;
+
+    window.open(whatsappUrl, '_blank');
+    closeQuickQuoteModal();
   }
 
   // Cotação Direta do Modal para o WhatsApp
@@ -966,9 +1037,41 @@
     });
 
     if (btnHeaderUpload) {
-      btnHeaderUpload.addEventListener('click', () => {
-        document.getElementById('quick-quote-section').scrollIntoView({ behavior: 'smooth' });
-        quickListText.focus();
+      btnHeaderUpload.addEventListener('click', (e) => {
+        e.preventDefault();
+        openQuickQuoteModal();
+      });
+    }
+
+    // Eventos do Modal Limpar Pedido
+    if (btnCloseClearModal) {
+      btnCloseClearModal.addEventListener('click', closeClearCartModal);
+    }
+    if (btnCancelClearCart) {
+      btnCancelClearCart.addEventListener('click', closeClearCartModal);
+    }
+    if (btnConfirmClearCart) {
+      btnConfirmClearCart.addEventListener('click', confirmClearCartAction);
+    }
+    if (modalClearCart) {
+      modalClearCart.addEventListener('click', (e) => {
+        if (e.target === modalClearCart) closeClearCartModal();
+      });
+    }
+
+    // Eventos do Modal Cotar Lista Pronta
+    if (btnCloseQuickModal) {
+      btnCloseQuickModal.addEventListener('click', closeQuickQuoteModal);
+    }
+    if (btnCancelQuickModal) {
+      btnCancelQuickModal.addEventListener('click', closeQuickQuoteModal);
+    }
+    if (btnModalSendQuick) {
+      btnModalSendQuick.addEventListener('click', sendModalQuickQuote);
+    }
+    if (modalQuickQuote) {
+      modalQuickQuote.addEventListener('click', (e) => {
+        if (e.target === modalQuickQuote) closeQuickQuoteModal();
       });
     }
 
@@ -990,8 +1093,10 @@
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        if (modalOverlay.classList.contains('open')) closeProductModal();
-        else if (cartDrawer.classList.contains('open')) closeCartDrawer();
+        if (modalClearCart && modalClearCart.classList.contains('open')) closeClearCartModal();
+        else if (modalQuickQuote && modalQuickQuote.classList.contains('open')) closeQuickQuoteModal();
+        else if (modalOverlay && modalOverlay.classList.contains('open')) closeProductModal();
+        else if (cartDrawer && cartDrawer.classList.contains('open')) closeCartDrawer();
       }
     });
   }
@@ -1004,6 +1109,12 @@
     removeCartItem,
     removeCartItemByIndex,
     clearCart,
+    openClearCartModal,
+    closeClearCartModal,
+    confirmClearCartAction,
+    openQuickQuoteModal,
+    closeQuickQuoteModal,
+    sendModalQuickQuote,
     quoteDirectOnWhatsApp,
     openCartDrawer,
     closeCartDrawer,
