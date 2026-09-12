@@ -761,6 +761,19 @@
     // Inicializar carrossel de ofertas
     setupOfferCarousel();
 
+    // Reduzir opacidade do widget flutuante durante a rolagem para não sobrepor botões
+    const floatingWidget = document.getElementById('onira-floating-widget');
+    if (floatingWidget) {
+      let scrollTimer = null;
+      window.addEventListener('scroll', () => {
+        floatingWidget.classList.add('is-scrolling');
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          floatingWidget.classList.remove('is-scrolling');
+        }, 350);
+      }, { passive: true });
+    }
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         if (modalOverlay.classList.contains('open')) closeProductModal();
