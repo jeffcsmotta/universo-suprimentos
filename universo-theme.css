@@ -301,6 +301,53 @@ a {
   transition: all var(--transition-fast);
 }
 
+.btn-repeat-quote {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(37, 211, 102, 0.1);
+  color: #15803D;
+  border: 1.5px solid rgba(37, 211, 102, 0.4);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-repeat-quote:hover {
+  background: #25D366;
+  color: #FFFFFF;
+  border-color: #25D366;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.btn-drawer-repeat-quote {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #F0FDF4;
+  color: #16A34A;
+  border: 1.5px solid #BBF7D0;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.84rem;
+  cursor: pointer;
+  margin-top: 0.85rem;
+  transition: all var(--transition-fast);
+}
+
+.btn-drawer-repeat-quote:hover {
+  background: #25D366;
+  color: #FFFFFF;
+  border-color: #25D366;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+}
+
 .btn-upload-list:hover {
   background: var(--gray-100);
   border-color: var(--gray-400);

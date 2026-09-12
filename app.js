@@ -8,6 +8,7 @@
 
   const WHATSAPP_PHONE = '5554999500444'; // (54) 9 9950-0444
   const CART_STORAGE_KEY = 'universo_b2b_quote_cart_v2';
+  const LAST_QUOTE_STORAGE_KEY = 'universo_b2b_last_quote_v1';
 
   // Estado da Aplicação
   let allProducts = [];
@@ -65,6 +66,7 @@
   // Inicialização
   async function init() {
     loadCartFromStorage();
+    checkRepeatQuoteButton();
     setupEventListeners();
     await loadProducts();
     updateCartUI();
@@ -645,12 +647,83 @@
 
     message += `\n────────────────────────────\n`;
     message += `💬 *A/C Equipe Comercial Universo:*\n`;
-    message += `Favor retornar com a melhor proposta comercial, prazo de entrega e condições de faturamento PJ. Obrigado!`;
+    // Salvar como última cotação realizada para recompra inteligente
+    try {
+      localStorage.setItem(LAST_QUOTE_STORAGE_KEY, JSON.stringify({
+        date: new Date().toLocaleDateString('pt-BR'),
+        items: cart,
+        companyName,
+        contactPerson,
+        city,
+        paymentPref
+      }));
+      checkRepeatQuoteButton();
+    } catch (err) {
+      console.warn('Erro ao salvar última cotação:', err);
+    }
 
     const encodedMsg = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMsg}`;
 
     window.open(whatsappUrl, '_blank');
+  }
+
+  // Feature: Repetir Última Cotação
+  function checkRepeatQuoteButton() {
+    const btn = document.getElementById('btn-repeat-quote');
+    const drawerBtn = document.getElementById('btn-drawer-repeat-quote');
+    const label = document.getElementById('repeat-quote-label');
+
+    try {
+      const saved = localStorage.getItem(LAST_QUOTE_STORAGE_KEY);
+      if (saved) {
+        const data = JSON.parse(saved);
+        if (data && data.items && data.items.length > 0) {
+          const totalQty = data.items.reduce((s, i) => s + i.quantity, 0);
+          if (btn) {
+            btn.style.display = 'inline-flex';
+            if (label) label.textContent = `Repetir Última Cotação (${totalQty} itens)`;
+          }
+          if (drawerBtn) {
+            drawerBtn.style.display = 'inline-flex';
+          }
+          return;
+        }
+      }
+    } catch (e) {}
+    if (btn) btn.style.display = 'none';
+    if (drawerBtn) drawerBtn.style.display = 'none';
+  }
+
+  function repeatLastQuote() {
+    try {
+      const saved = localStorage.getItem(LAST_QUOTE_STORAGE_KEY);
+      if (!saved) return;
+      const data = JSON.parse(saved);
+      if (!data || !data.items || !data.items.length) return;
+
+      cart = JSON.parse(JSON.stringify(data.items));
+      saveCartToStorage();
+      updateCartUI();
+      renderProducts();
+      openCartDrawer();
+
+      // Preencher campos da empresa se existirem
+      if (data.companyName) {
+        const el = document.getElementById('input-company');
+        if (el) el.value = data.companyName;
+      }
+      if (data.contactPerson) {
+        const el = document.getElementById('input-name');
+        if (el) el.value = data.contactPerson;
+      }
+      if (data.city) {
+        const el = document.getElementById('input-city');
+        if (el) el.value = data.city;
+      }
+    } catch (e) {
+      console.warn('Erro ao restaurar última cotação:', e);
+    }
   }
 
   // Envio de Lista Pronta
@@ -909,7 +982,9 @@
     addDirectOffer,
     scrollRail,
     clearSearch,
-    setCategory
+    setCategory,
+    repeatLastQuote,
+    checkRepeatQuoteButton
   };
 
   if (document.readyState === 'loading') {

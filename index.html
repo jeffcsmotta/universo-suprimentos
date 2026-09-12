@@ -77,6 +77,14 @@
           <span>Limpar Pedido</span>
         </button>
 
+        <button type="button" class="btn-repeat-quote" id="btn-repeat-quote" style="display: none;" onclick="window.universoApp.repeatLastQuote()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          <span id="repeat-quote-label">Repetir Última Cotação</span>
+        </button>
+
         <button type="button" class="btn-upload-list" id="btn-header-upload">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -651,6 +659,13 @@
         </svg>
         <h4>Sua lista está vazia</h4>
         <p style="font-size: 0.85rem;">Clique nos produtos para escolher opções e compor seu pedido corporativo.</p>
+        <button type="button" class="btn-drawer-repeat-quote" id="btn-drawer-repeat-quote" style="display: none;" onclick="window.universoApp.repeatLastQuote()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          <span>Recarregar Última Cotação</span>
+        </button>
       </div>
 
       <div class="cart-items-list" id="cart-items-list"></div>
