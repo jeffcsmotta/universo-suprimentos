@@ -41,10 +41,10 @@ const UNIVERSO_PROPOSTA = {
     }
   ],
   
-  // Condições Comerciais (Mesmos valores homologados da Onira)
-  setupPreco: 'R$ 3.800',
-  setupCondicao: '50% no aceite (R$ 1.900) + 50% na entrega final (R$ 1.900)',
-  feeMensal: 'R$ 500/mês',
-  feeSubinfo: 'Hospedagem em nuvem de alta velocidade + Concierge de Catálogo + Suporte',
+  // Condições Comerciais
+  setupPreco: '3x R$ 800',
+  setupCondicao: '3 parcelas de R$ 800 (ou R$ 2.400 à vista)',
+  feeMensal: 'R$ 100/mês',
+  feeSubinfo: 'Hospedagem em nuvem + Edição, inclusão e exclusão contínua de produtos no catálogo',
   validade: '10 dias úteis'
 };
