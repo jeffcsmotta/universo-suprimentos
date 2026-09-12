@@ -891,206 +891,439 @@ button {
   border-color: #FFFFFF;
 }
 
-/* Bonus Box */
-.bonus-box {
-  background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(24, 27, 34, 1) 50%);
-  border: 1px solid rgba(234, 179, 8, 0.3);
-  border-radius: var(--radius-lg);
-  padding: 24px 28px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.bonus-icon {
-  font-size: 2.2rem;
-  flex-shrink: 0;
-}
-
-.bonus-content h4 {
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #FACC15;
-  margin-bottom: 6px;
-}
-
-.bonus-content p {
-  font-size: 0.86rem;
-  color: #CBD5E1;
-  line-height: 1.55;
-}
-
 /* ==========================================================================
-   WIDGET ASSINATURA EXECUTIVA
+   CARD VISTOSO GOOGLE ADS & TRÁFEGO B2B (FEE R$ 300)
    ========================================================================== */
-.exec-signature-widget {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+.google-ads-featured-card {
+  background: linear-gradient(145deg, #0B132B 0%, #111C38 50%, #0D162B 100%);
+  border: 1.5px solid rgba(66, 133, 244, 0.4);
   border-radius: var(--radius-xl);
-  padding: 36px;
+  padding: 36px 40px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 35px rgba(66, 133, 244, 0.15);
+  margin-top: 24px;
 }
 
-.exec-widget-glow {
+.google-card-glow {
   position: absolute;
-  top: -80px;
-  right: -80px;
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, rgba(0, 102, 255, 0.2) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(66, 133, 244, 0.25) 0%, rgba(52, 168, 83, 0.12) 40%, transparent 70%);
   pointer-events: none;
 }
 
-.exec-widget-inner {
+.google-card-header {
   display: flex;
-  align-items: flex-start;
-  gap: 32px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 28px;
+}
+
+.google-brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+}
+
+.google-status-pill {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #34D399;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.google-card-body {
+  display: grid;
+  grid-template-columns: 1.35fr 0.95fr;
+  gap: 36px;
+  align-items: center;
   position: relative;
   z-index: 1;
 }
 
-.exec-avatar-col {
+.google-title {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+
+.google-desc {
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: #CBD5E1;
+  margin-bottom: 24px;
+}
+
+.google-desc strong {
+  color: #FFFFFF;
+}
+
+.google-features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.google-feat-item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px;
+  border-radius: var(--radius-md);
+}
+
+.google-feat-icon {
+  font-size: 1.3rem;
   flex-shrink: 0;
 }
 
-.exec-avatar-ring {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  border: 3px solid #0066FF;
-  padding: 3px;
-  background: var(--bg-base);
-  box-shadow: 0 0 24px rgba(0, 102, 255, 0.35);
-}
-
-.exec-avatar-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.exec-status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.68rem;
+.google-feat-item strong {
+  display: block;
+  font-size: 0.85rem;
   font-weight: 700;
-  color: #4ADE80;
-  background: rgba(37, 211, 102, 0.12);
-  border: 1px solid rgba(37, 211, 102, 0.25);
+  color: #FFFFFF;
+  margin-bottom: 3px;
+}
+
+.google-feat-item p {
+  font-size: 0.78rem;
+  color: #94A3B8;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.google-pricing-sidebar {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(66, 133, 244, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+}
+
+.google-fee-label {
+  font-family: var(--font-heading);
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #60A5FA;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.google-fee-val {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.google-fee-val .currency {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #60A5FA;
+}
+
+.google-fee-val .val {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.google-fee-val .period {
+  font-size: 0.92rem;
+  color: #94A3B8;
+}
+
+.google-fee-note {
+  font-size: 0.8rem;
+  color: #94A3B8;
+  line-height: 1.45;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.google-budget-simulation {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.budget-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: #CBD5E1;
+}
+
+.budget-row.total-highlight {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.badge-ready {
+  background: #10B981;
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 800;
   padding: 3px 8px;
   border-radius: var(--radius-pill);
 }
 
-.status-dot-pulse {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #4ADE80;
-  box-shadow: 0 0 8px #4ADE80;
-}
-
-.exec-content-col {
-  flex: 1;
-}
-
-.exec-header-row {
+.btn-activate-google {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: #0066FF;
+  color: #FFFFFF;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 13px 18px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.4);
 }
 
-.exec-name {
-  font-family: var(--font-heading);
-  font-size: 1.35rem;
-  font-weight: 800;
+.btn-activate-google:hover {
+  background: #0052CC;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5);
   color: #FFFFFF;
 }
 
-.exec-role {
-  font-size: 0.82rem;
-  color: #60A5FA;
-  font-weight: 600;
+.google-guarantee-text {
+  display: block;
+  text-align: center;
+  font-size: 0.72rem;
+  color: #94A3B8;
+  margin-top: 10px;
 }
 
-.exec-onira-logo {
-  height: 24px;
-  width: auto;
-  object-fit: contain;
-  opacity: 0.9;
-}
-
-.exec-quote {
-  font-size: 0.95rem;
-  font-style: italic;
-  color: #E2E8F0;
-  line-height: 1.6;
-  padding-left: 18px;
-  border-left: 3px solid #0066FF;
-  margin-bottom: 24px;
-}
-
-.exec-actions-bar {
+/* ==========================================================================
+   DEV CARD MASTER INSTITUCIONAL ONIRA LABS (PADRÃO MONTE CRISTO / LINKEDIN NAVY)
+   ========================================================================== */
+.dev-card-proposta {
+  background: linear-gradient(145deg, #09192E 0%, #061224 100%);
+  border: 1px solid rgba(56, 116, 203, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  border-radius: var(--radius-xl);
+  padding: 38px 42px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dev-card-proposta::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(10, 102, 194, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.dev-card-header {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.dev-card-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.dev-card-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 2.5px solid #0A66C2;
+  box-shadow: 0 0 24px rgba(10, 102, 194, 0.45);
+  object-fit: cover;
+  display: block;
+}
+
+.dev-card-avatar-wrap .status-dot-pulse {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #22C55E;
+  border: 2.5px solid #061224;
+  box-shadow: 0 0 10px #22C55E;
+}
+
+.dev-card-badge {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #38BDF8;
+  letter-spacing: 0.08em;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.dev-card-name {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 4px;
+}
+
+.dev-card-role {
+  font-size: 0.88rem;
+  color: #94A3B8;
+  margin: 0;
+}
+
+.dev-card-role strong {
+  color: #F8FAFC;
+}
+
+.dev-card-quote {
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: #E2E8F0;
+  border-left: 3.5px solid #0A66C2;
+  padding-left: 20px;
+  font-style: italic;
+  margin: 0;
+}
+
+.dev-card-footer {
+  display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
   gap: 16px;
-  padding-top: 18px;
-  border-top: 1px solid var(--border);
 }
 
-.btn-exec-primary {
+.dev-card-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn-exec-wa-direct {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--accent-green);
+  background: #25D366;
   color: #FFFFFF;
   font-size: 0.88rem;
   font-weight: 700;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 14px var(--accent-green-glow);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
 }
 
-.btn-exec-primary:hover {
-  background: #1EBE5D;
+.btn-exec-wa-direct:hover {
+  background: #20BA56;
   transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
+  color: #FFFFFF;
 }
 
-.exec-social-links {
-  display: flex;
-  gap: 12px;
-}
-
-.btn-exec-link {
+.dev-card-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
+  gap: 8px;
+  font-size: 0.84rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: #CBD5E1;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-  padding: 6px 12px;
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 
-.btn-exec-link:hover {
+.dev-card-link:hover {
   background: rgba(255, 255, 255, 0.09);
   color: #FFFFFF;
-  border-color: var(--border-strong);
+  border-color: #38BDF8;
+}
+
+.dev-card-agency {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  .google-card-body {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .google-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .google-ads-featured-card {
+    padding: 24px 20px;
+  }
+  .dev-card-proposta {
+    padding: 24px 20px;
+  }
+  .dev-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dev-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .btn-exec-wa-direct {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ==========================================================================
