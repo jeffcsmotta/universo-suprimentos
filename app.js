@@ -43,6 +43,8 @@
   const modalOverlay = document.getElementById('modal-overlay');
   const btnCloseModal = document.getElementById('btn-close-modal');
   const modalProductThumb = document.getElementById('modal-product-thumb');
+  const modalProductBadge = document.getElementById('modal-product-badge');
+  const modalProductPackage = document.getElementById('modal-product-package');
   const modalProductTitle = document.getElementById('modal-product-title');
   const modalProductDesc = document.getElementById('modal-product-desc');
   const modalOptionsContainer = document.getElementById('modal-options-container');
@@ -84,13 +86,62 @@
   }
 
   const CATEGORIES = [
-    { id: 'escritorio', name: 'Escritório & Papelaria', icon: '📄', subtitle: 'Papéis A4 Suzano/Chamex, pastas, canetas e arquivos' },
-    { id: 'higiene', name: 'Higiene & Limpeza', icon: '🧼', subtitle: 'Papel toalha interfolha, sabonete 5L, álcool 70% e químicos' },
-    { id: 'descartaveis', name: 'Descartáveis & Embalagens', icon: '🥤', subtitle: 'Copos 180ml/50ml, bobinas plásticas e filmes' },
-    { id: 'copa', name: 'Copa & Cozinha', icon: '☕', subtitle: 'Café Bom Jesus, Melitta, açúcar, chás e mexedores' },
-    { id: 'epis', name: 'Segurança & EPIs', icon: '🦺', subtitle: 'Luvas látex/nitrílicas, máscaras cirúrgicas e proteção' },
-    { id: 'hospitalar', name: 'Linha Hospitalar', icon: '🏥', subtitle: 'Aventais descartáveis, lençóis de papel e biossegurança' },
-    { id: 'informatica', name: 'Informática & Conectividade', icon: '💻', subtitle: 'Pilhas alcalinas, toners, mouses e cabos' }
+    { 
+      id: 'escritorio', 
+      name: 'Escritório & Papelaria', 
+      icon: '📄', 
+      subtitle: 'Papéis A4 Suzano/Chamex, pastas, canetas, toners e arquivos',
+      image: 'assets/images/produtos/folhas_report_a4.jpg',
+      highlight: 'Caixas Fechadas 5.000 fls'
+    },
+    { 
+      id: 'higiene', 
+      name: 'Higiene & Limpeza', 
+      icon: '🧼', 
+      subtitle: 'Papel toalha interfolha, sabonete 5L, álcool 70%, desinfetantes e químicos',
+      image: 'assets/images/produtos/papel_toalha_interfolha.jpg',
+      highlight: 'Uso Profissional & Fardos'
+    },
+    { 
+      id: 'descartaveis', 
+      name: 'Descartáveis & Embalagens', 
+      icon: '🥤', 
+      subtitle: 'Copos 180ml/50ml, bobinas plásticas, sacos de lixo e filmes',
+      image: 'assets/images/produtos/copos_descartaveis.jpg',
+      highlight: 'Tiradores de Copos & Bobinas'
+    },
+    { 
+      id: 'copa', 
+      name: 'Copa & Cozinha', 
+      icon: '☕', 
+      subtitle: 'Café Bom Jesus, Melitta, açúcar cristal/sachê, chás e mexedores',
+      image: 'assets/images/produtos/cafe_bom_jesus.jpg',
+      highlight: 'Fardos p/ Empresas & Refeitórios'
+    },
+    { 
+      id: 'epis', 
+      name: 'Segurança & EPIs', 
+      icon: '🦺', 
+      subtitle: 'Luvas látex/nitrílicas, máscaras cirúrgicas, toucas e proteção individual',
+      image: 'assets/images/produtos/luva_nitrilica.jpg',
+      highlight: 'Norma NR & Certificação'
+    },
+    { 
+      id: 'hospitalar', 
+      name: 'Linha Hospitalar', 
+      icon: '🏥', 
+      subtitle: 'Aventais descartáveis, lençóis de papel, caixas Descarpack e biossegurança',
+      image: 'assets/images/produtos/caixa_descarpack.jpg',
+      highlight: 'Clínicas & Laboratórios'
+    },
+    { 
+      id: 'informatica', 
+      name: 'Informática & Conectividade', 
+      icon: '💻', 
+      subtitle: 'Pilhas alcalinas, toners para impressora, mouses, teclados e cabos',
+      image: 'assets/images/produtos/toner_impressora.jpg',
+      highlight: 'Periféricos & Suprimentos TI'
+    }
   ];
 
   function renderProductCard(product) {
@@ -177,16 +228,23 @@
       productsCountEl.textContent = `${filteredProducts.length} produtos`;
       productsGrid.className = 'products-grid category-focus-grid';
       productsGrid.innerHTML = `
-        <div class="category-focus-header">
+        <div class="category-focus-header category-hero-banner" style="--cat-bg: url('${catObj ? catObj.image : 'assets/images/produtos/folhas_report_a4.jpg'}')">
+          <div class="cat-focus-overlay"></div>
           <div class="cat-focus-info">
-            <span class="cat-focus-icon">${catObj ? catObj.icon : '📦'}</span>
-            <div>
-              <h3>${catObj ? catObj.name : 'Departamento'}</h3>
-              <p>${catObj ? catObj.subtitle : ''}</p>
+            <div class="cat-hero-thumb">
+              <img src="${catObj ? catObj.image : 'assets/images/produtos/folhas_report_a4.jpg'}" alt="${catObj ? catObj.name : 'Categoria'}" loading="lazy">
+            </div>
+            <div class="cat-hero-text">
+              <div class="cat-hero-tag-row">
+                <span class="cat-badge-label">DEPARTAMENTO CORPORATIVO</span>
+                ${catObj && catObj.highlight ? `<span class="cat-highlight-pill">${catObj.highlight}</span>` : ''}
+              </div>
+              <h3 class="cat-hero-title">${catObj ? catObj.name : 'Departamento'}</h3>
+              <p class="cat-hero-sub">${catObj ? catObj.subtitle : ''}</p>
             </div>
           </div>
           <button type="button" class="btn-back-streaming" onclick="window.universoApp.setCategory('todos')">
-            ← Ver Todos os Departamentos (Trilhos Streaming)
+            ← Ver Todos os Departamentos
           </button>
         </div>
         ${filteredProducts.map(renderProductCard).join('')}
@@ -205,17 +263,24 @@
 
       railsHtml += `
         <section class="streaming-rail-section" id="rail-${cat.id}">
-          <div class="streaming-rail-header">
+          <div class="streaming-rail-header category-mini-hero" style="--cat-bg: url('${cat.image}')">
+            <div class="cat-mini-hero-overlay"></div>
             <div class="rail-title-box">
-              <span class="rail-icon-badge">${cat.icon}</span>
-              <div>
+              <div class="cat-mini-hero-thumb">
+                <img src="${cat.image}" alt="${cat.name}" loading="lazy">
+              </div>
+              <div class="cat-mini-hero-meta">
+                <div class="cat-tag-badge-line">
+                  <span class="cat-badge-label">CATEGORIA</span>
+                  <span class="rail-count-badge">${catProducts.length} itens</span>
+                </div>
                 <h3 class="rail-title">${cat.name}</h3>
                 <span class="rail-subtitle-desktop">${cat.subtitle}</span>
               </div>
-              <span class="rail-count-badge">${catProducts.length} itens</span>
             </div>
             <button type="button" class="rail-see-all-btn" onclick="window.universoApp.setCategory('${cat.id}')">
-              Ver todos (${catProducts.length}) <span>&rarr;</span>
+              <span>Explorar Departamento (${catProducts.length})</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
           </div>
 
@@ -312,6 +377,17 @@
     modalProductThumb.onerror = () => { modalProductThumb.src = 'assets/images/produtos/folhas_report_a4.jpg'; };
     modalProductTitle.textContent = product.name;
     modalProductDesc.textContent = product.description;
+    if (modalProductPackage) {
+      modalProductPackage.textContent = product.package || 'Faturamento Corporativo PJ';
+    }
+    if (modalProductBadge) {
+      if (product.badge) {
+        modalProductBadge.textContent = product.badge;
+        modalProductBadge.style.display = 'inline-block';
+      } else {
+        modalProductBadge.style.display = 'none';
+      }
+    }
     modalObsText.value = '';
     modalQtyVal.textContent = '1';
 

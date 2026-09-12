@@ -64,7 +64,7 @@
   <header class="header-main">
     <div class="container header-inner">
       <a href="#" class="brand-logo" title="Universo Suprimentos Corporativos">
-        <img src="assets/images/universo_logo.svg" alt="Universo Suprimentos Corporativos Logo" class="brand-logo-img">
+        <img src="assets/images/universo_logo_cropped.png" alt="Universo Suprimentos Corporativos Logo" class="brand-logo-img">
       </a>
 
       <!-- Ações do Cabeçalho -->
@@ -492,8 +492,12 @@
       </div>
       <div class="modal-body">
         <div class="modal-product-summary">
-          <img src="" alt="" id="modal-product-thumb" class="modal-product-thumb">
+          <div class="modal-product-thumb-wrap">
+            <img src="" alt="" id="modal-product-thumb" class="modal-product-thumb">
+            <span class="modal-product-badge" id="modal-product-badge" style="display: none;"></span>
+          </div>
           <div class="modal-product-info">
+            <span class="modal-product-package" id="modal-product-package"></span>
             <h4 id="modal-product-title">Nome do Produto</h4>
             <p id="modal-product-desc">Descrição do produto</p>
           </div>
@@ -529,6 +533,12 @@
   <div class="cart-overlay" id="cart-overlay"></div>
   <aside class="cart-drawer" id="cart-drawer" aria-label="Lista de Cotação">
     <div class="cart-drawer-header">
+      <button type="button" class="btn-close-drawer" id="btn-close-drawer" aria-label="Continuar comprando">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        <span>Continuar</span>
+      </button>
       <div class="cart-drawer-title">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -537,12 +547,6 @@
         </svg>
         <h3>Sua Lista de Cotação</h3>
       </div>
-      <button type="button" class="btn-close-drawer" id="btn-close-drawer" aria-label="Continuar comprando">
-        <span>Continuar</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
     </div>
 
     <div class="cart-drawer-body">

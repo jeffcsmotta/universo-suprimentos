@@ -633,21 +633,78 @@ button {
   border: 1px solid rgba(37, 211, 102, 0.3);
 }
 
-.comp-list {
+.comp-card-intro {
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.comp-card-intro h4 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 6px;
+}
+
+.comp-card-intro p {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.comp-list-rich {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
 }
 
-.comp-list li {
-  font-size: 0.9rem;
-  color: #CBD5E1;
+.comp-list-rich li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 0.88rem;
   line-height: 1.55;
+  color: #CBD5E1;
 }
 
-.comp-list li strong {
+.comp-item-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.comp-item-icon.danger-icon {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.comp-item-icon.success-icon {
+  background: rgba(37, 211, 102, 0.15);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+}
+
+.comp-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.comp-item-content strong {
   color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.comp-item-content span {
+  color: #94A3B8;
+  font-size: 0.85rem;
 }
 
 /* ==========================================================================
@@ -1426,7 +1483,7 @@ button {
   <header class="prop-header">
     <div class="prop-header-inner">
       <div class="prop-brand">
-        <img src="assets/images/universo_logo.svg" alt="Universo Suprimentos" class="prop-logo-universo" onerror="this.onerror=null; this.src='assets/images/logo.png';">
+        <img src="assets/images/universo_logo_white.png" alt="Universo Suprimentos" class="prop-logo-universo" onerror="this.onerror=null; this.src='assets/images/universo_logo_cropped.png';">
         <span class="prop-divider">/</span>
         <span class="prop-tag">ONIRA.FLY B2B</span>
       </div>
@@ -1540,33 +1597,97 @@ button {
     </div>
   </section>
 
-  <!-- DIFERENCIAL TESE: SITE VS CATÁLOGO.WEB -->
+  <!-- DIFERENCIAL TESE: SITE VS CATÁLOGO.WEB (DORES REAIS B2B VS GANHOS CONCRETOS) -->
   <section id="tese-catalogo" class="prop-section bg-alt">
     <div class="prop-container">
       <div class="section-heading">
-        <span class="eyebrow">DIAGNÓSTICO COMERCIAL</span>
-        <h2>Por que empresas de suprimentos perdem dinheiro com "sites institucionais comuns"?</h2>
-        <p>A maioria das empresas gasta fortunas em sites pesados que ninguém lê. Para o nicho B2B da Universo, a conversão acontece na agilidade da lista de compras.</p>
+        <span class="eyebrow">DIAGNÓSTICO COMERCIAL &bull; ONDE O DINHEIRO ESTÁ VAZANDO</span>
+        <h2>O abismo entre um site que apenas gasta e um Catálogo.Web que gera faturamento</h2>
+        <p>No fornecimento corporativo de suprimentos, o comprador não é um consumidor comum passeando no Google. Ele tem 15 minutos entre reuniões para abastecer almoxarifados. Entenda por que modelos tradicionais travam vendas e como o Onira.fly resolve.</p>
       </div>
 
       <div class="comparison-grid">
+        <!-- LADO VERMELHO: O MODELO OBSOLETO -->
         <div class="comp-card danger">
-          <div class="comp-badge bad">Site Institucional Comum (Obsoleto)</div>
-          <ul class="comp-list">
-            <li>❌ <strong>PDF estático de 40MB:</strong> O cliente no WhatsApp não baixa, consome franquia e trava o aparelho.</li>
-            <li>❌ <strong>Preços expostos:</strong> Concorrentes copiam sua tabela e cobrem por centavos no mesmo dia.</li>
-            <li>❌ <strong>Formulários frios de contato:</strong> "Preencha e entraremos em contato em 48h" — o cliente já comprou de outro.</li>
-            <li>❌ <strong>Custos abusivos de hospedagem:</strong> Mensalidades de R$ 300 a R$ 800 só para manter o servidor no ar.</li>
+          <div class="comp-badge bad">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="display: inline-block; vertical-align: middle; margin-right: 4px;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            O Modelo Tradicional (Onde a Universo Perde Negócios)
+          </div>
+          <div class="comp-card-intro">
+            <h4>Sites vitrine comuns & Catálogos em PDF</h4>
+            <p>Criados para "parecer bonito", mas que geram atrito brutal no dia a dia do setor de compras.</p>
+          </div>
+          <ul class="comp-list-rich">
+            <li>
+              <div class="comp-item-icon danger-icon">📂</div>
+              <div class="comp-item-content">
+                <strong>O pesadelo do PDF de 40MB no WhatsApp:</strong>
+                <span>O comprador corporativo tenta baixar no celular no 4G da empresa, o arquivo não abre, consome a memória do aparelho e ele simplesmente pede cotação para o concorrente que mandou link leve.</span>
+              </div>
+            </li>
+            <li>
+              <div class="comp-item-icon danger-icon">📉</div>
+              <div class="comp-item-content">
+                <strong>Margens destruídas por preços expostos:</strong>
+                <span>Colocar tabela de preços aberta na internet entrega o seu jogo. Concorrentes locais olham seus valores e cobrem por R$ 0,10 a resma na hora da cotação. Você perde a margem e o cliente.</span>
+              </div>
+            </li>
+            <li>
+              <div class="comp-item-icon danger-icon">⏱️</div>
+              <div class="comp-item-content">
+                <strong>Formulários frios de "Fale Conosco":</strong>
+                <span>"Deixe seu e-mail e responderemos em até 48h úteis". Enquanto seu e-mail chega na caixa de entrada, a indústria já ligou para o distribuidor que atendeu imediatamente no WhatsApp.</span>
+              </div>
+            </li>
+            <li>
+              <div class="comp-item-icon danger-icon">💸</div>
+              <div class="comp-item-content">
+                <strong>Custos ocultos & dependência crônica de agência:</strong>
+                <span>Qualquer troca de marca, ajuste de estoque ou inclusão de produto vira um chamado com prazo de 10 dias e cobrança de hora técnica exorbitante.</span>
+              </div>
+            </li>
           </ul>
         </div>
 
+        <!-- LADO VERDE: A MÁQUINA DE VENDAS ONIRA.FLY -->
         <div class="comp-card success">
-          <div class="comp-badge good">Catálogo.Web Onira.fly (Máquina de Vendas)</div>
-          <ul class="comp-list">
-            <li>✅ <strong>Carrinho B2B Inteligente:</strong> O cliente escolhe Papel A4 (caixa ou resma), produtos de limpeza e EPIs em segundos.</li>
-            <li>✅ <strong>Cotação Fechada 1 a 1:</strong> O pedido cai formatado com códigos, marcas e quantidades direto no WhatsApp do vendedor.</li>
-            <li>✅ <strong>Margens Preservadas:</strong> Seu consultor negocia prazos, faturamento e volumes com liberdade comercial total.</li>
-            <li>✅ <strong>Upgrade Transparente:</strong> Quando quiser que vire site com domínio próprio, basta registrar por R$ 40/ano no Registro.br e nós publicamos no servidor Onira.</li>
+          <div class="comp-badge good">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="display: inline-block; vertical-align: middle; margin-right: 4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Catálogo.Web Onira.fly (Máquina de Cotação Ativa)
+          </div>
+          <div class="comp-card-intro">
+            <h4>Feito sob medida para o comprador B2B ágil</h4>
+            <p>Foco cirúrgico em montar o pedido em segundos e colocar a lista técnica mastigada na mesa do seu vendedor.</p>
+          </div>
+          <ul class="comp-list-rich">
+            <li>
+              <div class="comp-item-icon success-icon">⚡</div>
+              <div class="comp-item-content">
+                <strong>Carregamento em 0.8s sem instalar nem baixar nada:</strong>
+                <span>Arquitetura estática CDN ultrarrápida. Abre instantaneamente em qualquer tela, do iPhone do diretor ao Android simples do encarregado de estoque.</span>
+              </div>
+            </li>
+            <li>
+              <div class="comp-item-icon success-icon">🎯</div>
+              <div class="comp-item-content">
+                <strong>Montagem de cesta B2B com opções técnicas:</strong>
+                <span>O cliente seleciona se quer Caixa c/ 10 resmas ou fardo fechado, escolhe gramatura e volume com 2 toques. Zero ambiguidade de especificação.</span>
+              </div>
+            </li>
+            <li>
+              <div class="comp-item-icon success-icon">💬</div>
+              <div class="comp-item-content">
+                <strong>Disparo direto no WhatsApp com payload completo:</strong>
+                <span>O vendedor recebe a mensagem organizada com CNPJ, responsável, itens e condições de faturamento. É só puxar a ficha e faturar o pedido.</span>
+              </div>
+            </li>
+            <li>
+              <div class="comp-item-icon success-icon">🛡️</div>
+              <div class="comp-item-content">
+                <strong>Poder de negociação & proteção de margem:</strong>
+                <span>Sem leilão público de preço. Sua equipe comercial negocia faturamento 28 DDL, descontos para grandes fardos e constrói relacionamento duradouro com o cliente.</span>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
