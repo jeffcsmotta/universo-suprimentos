@@ -1473,9 +1473,133 @@ button {
   font-family: var(--font-heading);
 }
 
+/* CARDS DE BENEFÍCIOS B2B (MÁQUINA ONIRA.FLY) */
+.benefits-highlights-section {
+  padding: 4.5rem 0;
+  background: #11141B;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
 
+.benefits-rich-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 2.25rem;
+}
+
+@media (max-width: 1024px) {
+  .benefits-rich-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .benefits-rich-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.benefit-rich-card {
+  background: #181B22;
+  border: 1px solid #2B313E;
+  border-radius: var(--radius-lg);
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.benefit-rich-card:hover {
+  border-color: #0066FF;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 102, 255, 0.15);
+}
+
+.benefit-rich-card.spotlight {
+  border-color: rgba(0, 102, 255, 0.5);
+  background: linear-gradient(180deg, rgba(0, 102, 255, 0.10) 0%, #181B22 45%);
+}
+
+.benefit-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.benefit-icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(0, 102, 255, 0.15);
+  border: 1px solid rgba(0, 102, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.benefit-tag-pill {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  color: #94A3B8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.benefit-tag-pill.accent {
+  background: rgba(37, 211, 102, 0.15);
+  color: #4ADE80;
+  border-color: rgba(37, 211, 102, 0.3);
+}
+
+.benefit-tag-pill.blue {
+  background: rgba(0, 102, 255, 0.18);
+  color: #60A5FA;
+  border-color: rgba(96, 165, 250, 0.35);
+}
+
+.benefit-rich-card h4 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.benefit-rich-card p {
+  font-size: 0.88rem;
+  color: #94A3B8;
+  line-height: 1.55;
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.benefit-card-footer {
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #CBD5E1;
+}
+
+.benefit-card-footer svg {
+  color: #4ADE80;
+  flex-shrink: 0;
+}
 </style>
-  <link rel="stylesheet" href="proposta-style.css">
+  <link rel="stylesheet" href="proposta-style.css?v=3.6">
 </head>
 <body>
 
@@ -1724,6 +1848,103 @@ button {
               </div>
             </li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDS DE BENEFÍCIOS B2B & GANHOS ESTRATÉGICOS CONCRETOS (MÁQUINA DE COTAÇÃO) -->
+  <section class="benefits-highlights-section" id="beneficios-estrategicos">
+    <div class="prop-container">
+      <div class="section-heading">
+        <span class="eyebrow">ARGUMENTOS &bull; VANTAGENS COMPETITIVAS COMPROVADAS</span>
+        <h2>Por que o Catálogo.Web supera qualquer e-commerce ou PDF tradicional</h2>
+        <p>Projetado especificamente para a dinâmica do fornecimento corporativo em Caxias do Sul e Serra Gaúcha. Cada card resolve uma dor crônica da venda B2B.</p>
+      </div>
+
+      <div class="benefits-rich-grid">
+        <!-- Card 1: Efeito Pinça -->
+        <div class="benefit-rich-card spotlight">
+          <div class="benefit-card-top">
+            <div class="benefit-icon-badge">🦀</div>
+            <span class="benefit-tag-pill accent">EFEITO PINÇA B2B</span>
+          </div>
+          <h4>Link na Bio + WhatsApp Integrados</h4>
+          <p>O Catálogo.Web assume a bio do seu Instagram corporativo e o link de resposta rápida do WhatsApp Business. Quem chega pelas redes clica, seleciona os materiais e devolve o pedido estruturado no WhatsApp do seu vendedor, sem rota de fuga para cotação na concorrência.</p>
+          <div class="benefit-card-footer">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Blindagem total de tráfego e conversão</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Blindagem de Margem -->
+        <div class="benefit-rich-card">
+          <div class="benefit-card-top">
+            <div class="benefit-icon-badge">🛡️</div>
+            <span class="benefit-tag-pill blue">PROTEÇÃO DE MARGEM</span>
+          </div>
+          <h4>Sem Leilão Público de Preços</h4>
+          <p>Sites convencionais com preço aberto entregam sua margem para concorrentes locais cobrirem por centavos. O Onira.fly preserva o valor comercial da Universo: sua equipe negocia faturamento 28 DDL, bonificações para grandes volumes e constrói relação duradoura com o CNPJ.</p>
+          <div class="benefit-card-footer">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Lucro preservado em cada negociação</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Agilidade do Comprador -->
+        <div class="benefit-rich-card">
+          <div class="benefit-card-top">
+            <div class="benefit-icon-badge">⚡</div>
+            <span class="benefit-tag-pill">AGILIDADE DE COMPRA</span>
+          </div>
+          <h4>Cotação de Almoxarifado em 30 Segundos</h4>
+          <p>Compradores corporativos têm rotinas sobrecarregadas. Em vez de ler catálogos em PDF de 40MB ou ouvir áudios longos, o encarregado navega pelas categorias por departamento (higiene, papelaria, descartáveis, EPIs), toca nas opções e monta o pedido completo em meio minuto.</p>
+          <div class="benefit-card-footer">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Experiência mobile instantânea sem atrito</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Payload Técnico -->
+        <div class="benefit-rich-card">
+          <div class="benefit-card-top">
+            <div class="benefit-icon-badge">📋</div>
+            <span class="benefit-tag-pill blue">ZERO ERRO DE PEDIDO</span>
+          </div>
+          <h4>Payload Técnico Mastigado no WhatsApp</h4>
+          <p>Chega de vendedor decifrando códigos em fotos de nota fiscal. A mensagem recebida pelo WhatsApp já chega catalogada com Razão Social, CNPJ, responsável, opções exatas (ex: caixa c/ 10 resmas, gramatura 75g, fardo 2.000 fls) e preferência de pagamento faturado PJ.</p>
+          <div class="benefit-card-footer">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Vendedor apenas emite a fatura</span>
+          </div>
+        </div>
+
+        <!-- Card 5: Recompra Inteligente -->
+        <div class="benefit-rich-card">
+          <div class="benefit-card-top">
+            <div class="benefit-icon-badge">🔄</div>
+            <span class="benefit-tag-pill accent">RECOMPRA RECORRENTE</span>
+          </div>
+          <h4>Repetir Última Cotação em 1 Toque</h4>
+          <p>Materiais de escritório e limpeza são despesas mensais previsíveis. O comprador que volta ao site encontra o botão "Repetir Última Cotação": um toque restaura instantaneamente todos os itens e os dados cadastrais da empresa da cotação anterior, agilizando o ressuprimento.</p>
+          <div class="benefit-card-footer">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Fidelização e compras recorrentes sem esforço</span>
+          </div>
+        </div>
+
+        <!-- Card 6: Atalho Lista Pronta -->
+        <div class="benefit-rich-card">
+          <div class="benefit-card-top">
+            <div class="benefit-icon-badge">📝</div>
+            <span class="benefit-tag-pill">COTAR MINHA LISTA</span>
+          </div>
+          <h4>Atalho para Listas Grandes e Urgências</h4>
+          <p>Para indústrias que já possuem sua lista de compras tabulada no Excel ou bloco de notas, o atalho "Cotar Minha Lista" permite colar o texto inteiro diretamente na plataforma e despachar para a Universo em 1 clique, sem precisar buscar produto por produto.</p>
+          <div class="benefit-card-footer">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Acolhe o comprador com máxima conveniência</span>
+          </div>
         </div>
       </div>
     </div>

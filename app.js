@@ -502,8 +502,8 @@
     emptyCartState.style.display = 'none';
     cartFooter.style.display = 'block';
 
-    const html = cart.map(item => `
-      <div class="cart-item-row" data-cart-id="${item.cartItemId}">
+    const html = cart.map((item, index) => `
+      <div class="cart-item-row" data-cart-id="${item.cartItemId}" data-cart-index="${index}">
         <img src="${item.image}" alt="${item.name}" class="cart-item-thumb">
         <div class="cart-item-details">
           <div class="cart-item-name">${item.name}</div>
@@ -517,12 +517,12 @@
           ${item.obs ? `<div class="cart-item-obs">Obs: "${item.obs}"</div>` : ''}
           <div class="cart-item-bottom-row">
             <div class="cart-qty-control">
-              <button type="button" class="btn-qty" onclick="event.stopPropagation(); window.universoApp.changeCartItemQty('${item.cartItemId}', -1)">-</button>
+              <button type="button" class="btn-qty" onclick="event.stopPropagation(); window.universoApp.changeCartItemQtyByIndex(${index}, -1)">-</button>
               <span class="qty-display">${item.quantity}</span>
-              <button type="button" class="btn-qty" onclick="event.stopPropagation(); window.universoApp.changeCartItemQty('${item.cartItemId}', 1)">+</button>
+              <button type="button" class="btn-qty" onclick="event.stopPropagation(); window.universoApp.changeCartItemQtyByIndex(${index}, 1)">+</button>
             </div>
-            <button type="button" class="btn-remove-item" onclick="event.stopPropagation(); window.universoApp.removeCartItem('${item.cartItemId}')" title="Remover item">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <button type="button" class="btn-remove-item" onclick="event.stopPropagation(); window.universoApp.removeCartItemByIndex(${index})" title="Remover item da cotação">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="pointer-events: none;">
                 <polyline points="3 6 5 6 21 6"></polyline>
                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
               </svg>
@@ -533,6 +533,17 @@
     `).join('');
 
     cartItemsList.innerHTML = html;
+  }
+
+  function changeCartItemQtyByIndex(index, delta) {
+    if (index < 0 || index >= cart.length) return;
+    cart[index].quantity += delta;
+    if (cart[index].quantity <= 0) {
+      cart.splice(index, 1);
+    }
+    saveCartToStorage();
+    updateCartUI();
+    renderProducts();
   }
 
   function changeCartItemQty(cartItemId, delta) {
@@ -549,11 +560,20 @@
     renderProducts();
   }
 
+  function removeCartItemByIndex(index) {
+    if (index >= 0 && index < cart.length) {
+      cart.splice(index, 1);
+      saveCartToStorage();
+      updateCartUI();
+      renderProducts();
+    }
+  }
+
   function removeCartItem(cartItemId) {
     const initialLen = cart.length;
     cart = cart.filter(i => String(i.cartItemId) !== String(cartItemId));
     
-    // Se não encontrou pelo ID exato, tenta limpar se for o único ou primeiro
+    // Se não encontrou pelo ID exato, remove o primeiro item como resguardo
     if (cart.length === initialLen && initialLen > 0) {
       cart.splice(0, 1);
     }
@@ -980,7 +1000,9 @@
     openProductModal,
     setOption,
     changeCartItemQty,
+    changeCartItemQtyByIndex,
     removeCartItem,
+    removeCartItemByIndex,
     clearCart,
     quoteDirectOnWhatsApp,
     openCartDrawer,

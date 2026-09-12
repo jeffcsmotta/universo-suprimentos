@@ -2379,26 +2379,28 @@ a {
   color: #F87171;
 }
 
-/* Botão Limpar Pedido Global no Header */
+/* Botão Limpar Pedido Global no Header (Entre Cotar Minha Lista e Lista de Cotação) */
 .btn-clear-cart-global {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  background: transparent;
-  color: #64748B;
-  border: 1px solid #CBD5E1;
+  background: #FFF5F5;
+  color: #DC2626;
+  border: 1.5px solid #FCA5A5;
   padding: 0.6rem 0.95rem;
   border-radius: var(--radius-md);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.84rem;
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .btn-clear-cart-global:hover {
-  background: #FEF2F2;
-  border-color: #FCA5A5;
-  color: #DC2626;
+  background: #FEE2E2;
+  border-color: #EF4444;
+  color: #B91C1C;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+  transform: translateY(-1px);
 }
 
 .cart-drawer-body {
