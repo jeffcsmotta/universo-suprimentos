@@ -444,8 +444,10 @@
     const obs = modalObsText.value.trim();
     const optionsArray = Object.entries(modalSelectedOptions).map(([key, val]) => `${key}: ${val}`);
 
-    // Gerar chave única para itens com diferentes opções
-    const cartItemId = `${currentProductForOptions.id}_${JSON.stringify(modalSelectedOptions)}_${obs}`;
+    // Gerar identificador limpo e seguro (sem quebra por caracteres especiais em atributos HTML)
+    const optionsKey = Object.entries(modalSelectedOptions).map(([k, v]) => `${k}-${v}`).join('_').replace(/[^a-zA-Z0-9_-]/g, '');
+    const cleanObsKey = obs.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 20);
+    const cartItemId = `${currentProductForOptions.id}_${optionsKey || 'std'}_${cleanObsKey || 'none'}`;
 
     const existingIndex = cart.findIndex(item => item.cartItemId === cartItemId);
 
