@@ -164,22 +164,13 @@
             <span>${product.package}</span>
           </div>
           <div class="product-footer">
-            <div class="product-quote-info">
-              <span class="quote-label">Condição PJ</span>
-              <span class="quote-value">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                </svg>
-                Faturamento
-              </span>
-            </div>
-            <button type="button" class="btn-open-options ${inCartCount > 0 ? 'added' : ''}" onclick="event.stopPropagation(); window.universoApp.openProductModal('${product.id}')">
+            <button type="button" class="btn-open-options full-width ${inCartCount > 0 ? 'added' : ''}" onclick="event.stopPropagation(); window.universoApp.openProductModal('${product.id}')">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 ${inCartCount > 0 
                   ? '<polyline points="20 6 9 17 4 12"></polyline>' 
                   : '<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>'}
               </svg>
-              <span>${inCartCount > 0 ? `Na Lista (${inCartCount})` : 'Cotar Opções'}</span>
+              <span>${inCartCount > 0 ? `Na Lista de Cotação (${inCartCount})` : '+ Adicionar à Cotação'}</span>
             </button>
           </div>
         </div>
@@ -222,7 +213,7 @@
       return;
     }
 
-    // Cenário 2: Categoria isolada (quando o usuário clica em um departamento específico)
+    // Cenário 2: Categoria isolada (quando o usuário clica em Conhecer Categoria ou seleciona no filtro)
     if (activeCategory !== 'todos') {
       const catObj = CATEGORIES.find(c => c.id === activeCategory);
       productsCountEl.textContent = `${filteredProducts.length} produtos`;
@@ -231,13 +222,15 @@
         <div class="category-focus-header category-hero-banner" style="--cat-bg: url('${catObj ? catObj.image : 'assets/images/produtos/folhas_report_a4.jpg'}')">
           <div class="cat-focus-overlay"></div>
           <div class="cat-focus-info">
-            <div class="cat-hero-thumb">
-              <img src="${catObj ? catObj.image : 'assets/images/produtos/folhas_report_a4.jpg'}" alt="${catObj ? catObj.name : 'Categoria'}" loading="lazy">
+            <div class="cat-mini-hero-icon-filter" style="width: 54px; height: 54px;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+              </svg>
             </div>
             <div class="cat-hero-text">
               <div class="cat-hero-tag-row">
                 <span class="cat-badge-label">DEPARTAMENTO CORPORATIVO</span>
-                ${catObj && catObj.highlight ? `<span class="cat-highlight-pill">${catObj.highlight}</span>` : ''}
+                <span class="rail-count-badge">${filteredProducts.length} itens em grade</span>
               </div>
               <h3 class="cat-hero-title">${catObj ? catObj.name : 'Departamento'}</h3>
               <p class="cat-hero-sub">${catObj ? catObj.subtitle : ''}</p>
@@ -266,8 +259,10 @@
           <div class="streaming-rail-header category-mini-hero" style="--cat-bg: url('${cat.image}')">
             <div class="cat-mini-hero-overlay"></div>
             <div class="rail-title-box">
-              <div class="cat-mini-hero-thumb">
-                <img src="${cat.image}" alt="${cat.name}" loading="lazy">
+              <div class="cat-mini-hero-icon-filter" title="Filtro do Departamento ${cat.name}">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
               </div>
               <div class="cat-mini-hero-meta">
                 <div class="cat-tag-badge-line">
@@ -279,7 +274,7 @@
               </div>
             </div>
             <button type="button" class="rail-see-all-btn" onclick="window.universoApp.setCategory('${cat.id}')">
-              <span>Explorar Departamento (${catProducts.length})</span>
+              <span>Conhecer Categoria</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
           </div>
@@ -491,12 +486,14 @@
     cartBadgeEl.textContent = totalCount;
 
     if (cart.length === 0) {
+      cartTriggerBtn.classList.remove('has-items');
       emptyCartState.style.display = 'block';
       cartItemsList.innerHTML = '';
       cartFooter.style.display = 'none';
       return;
     }
 
+    cartTriggerBtn.classList.add('has-items');
     emptyCartState.style.display = 'none';
     cartFooter.style.display = 'block';
 
