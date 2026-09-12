@@ -943,7 +943,8 @@ a {
    SEÇÃO "MANDE SUA LISTA DE COMPRAS" (SUAVIZADA COM CARD CLARO & BORDA DELICADA)
    ========================================================================== */
 .quick-quote-banner {
-  margin: 1.5rem 0 2.5rem;
+  margin: 2rem auto 3rem;
+  width: 100%;
 }
 
 .quick-quote-box {
@@ -2513,20 +2514,21 @@ a {
   color: #F87171;
 }
 
-/* Botão Limpar Pedido Global no Header: Outline vermelho puro SEM preenchimento rosa */
+/* Botão Limpar Pedido Global no Header: Apenas a lixeirinha (icon-only), outline vermelho puro */
 .btn-clear-cart-global {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
   background: transparent !important;
   color: #EF4444 !important;
   border: 1.5px solid #EF4444 !important;
-  padding: 0.55rem 0.95rem;
   border-radius: var(--radius-md);
-  font-weight: 700;
-  font-size: 0.84rem;
   cursor: pointer;
   transition: all var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .btn-clear-cart-global:hover {
@@ -3203,10 +3205,9 @@ a {
     gap: 0.35rem;
   }
   .btn-clear-cart-global {
+    width: 36px;
     height: 36px;
-    padding: 0.35rem 0.65rem;
-    font-size: 0.74rem;
-    gap: 0.3rem;
+    padding: 0;
     border-radius: var(--radius-sm);
   }
   .btn-repeat-quote {
