@@ -235,25 +235,27 @@
     if (activeCategory !== 'todos') {
       const catObj = CATEGORIES.find(c => c.id === activeCategory);
       productsCountEl.textContent = `${filteredProducts.length} produtos`;
-      productsGrid.className = 'products-grid category-focus-grid';
+      productsGrid.className = 'category-focus-view';
       productsGrid.innerHTML = `
-        <div class="category-focus-header category-hero-banner" style="--cat-bg: url('${catObj ? catObj.image : 'assets/images/produtos/folhas_report_a4.jpg'}')">
-          <div class="cat-focus-overlay"></div>
-          <div class="cat-focus-info">
-            <div class="cat-hero-text">
-              <div class="cat-hero-tag-row">
-                <span class="cat-badge-label">DEPARTAMENTO CORPORATIVO</span>
-                <span class="rail-count-badge">${filteredProducts.length} itens em grade</span>
+        <div class="streaming-rail-header category-mini-hero category-hero-banner" style="--cat-bg: url('${catObj ? catObj.image : 'assets/images/produtos/folhas_report_a4.jpg'}')">
+          <div class="cat-mini-hero-overlay"></div>
+          <div class="rail-title-box">
+            <div class="cat-mini-hero-meta">
+              <div class="cat-tag-badge-line">
+                <span class="cat-badge-label">DEPARTAMENTO</span>
+                <span class="rail-count-badge">${filteredProducts.length} itens</span>
               </div>
-              <h3 class="cat-hero-title">${catObj ? catObj.name : 'Departamento'}</h3>
-              <p class="cat-hero-sub">${catObj ? catObj.subtitle : ''}</p>
+              <h3 class="rail-title">${catObj ? catObj.name : 'Departamento'}</h3>
+              <span class="rail-subtitle-desktop">${catObj ? catObj.subtitle : ''}</span>
             </div>
           </div>
           <button type="button" class="btn-back-streaming" onclick="window.universoApp.setCategory('todos')">
             ← Ver Todos os Departamentos
           </button>
         </div>
-        ${filteredProducts.map(renderProductCard).join('')}
+        <div class="products-grid">
+          ${filteredProducts.map(renderProductCard).join('')}
+        </div>
       `;
       return;
     }
