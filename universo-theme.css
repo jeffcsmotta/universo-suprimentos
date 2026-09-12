@@ -931,6 +931,264 @@ a {
   gap: 1.5rem;
 }
 
+/* ==========================================================================
+   CATEGORIAS TIPO STREAMING (RAILS / TRILHOS HORIZONTAIS ESTILO NETFLIX B2B)
+   ========================================================================== */
+.streaming-rails-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  width: 100%;
+}
+
+.streaming-rail-section {
+  width: 100%;
+  position: relative;
+}
+
+.streaming-rail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  padding: 0 0.25rem;
+}
+
+.rail-title-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.rail-icon-badge {
+  font-size: 1.35rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.rail-title-box h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.rail-subtitle-desktop {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.rail-count-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  background: rgba(0, 102, 255, 0.08);
+  border: 1px solid rgba(0, 102, 255, 0.18);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.rail-see-all-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-accent);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all var(--transition-fast);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.rail-see-all-btn:hover {
+  background: rgba(0, 102, 255, 0.08);
+  transform: translateX(2px);
+}
+
+.streaming-rail-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.streaming-rail-track {
+  display: flex;
+  gap: 1.15rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0.4rem 0.35rem 0.95rem;
+  scroll-behavior: smooth;
+}
+
+.streaming-rail-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card nos Trilhos Streaming */
+.streaming-rail-track .product-card {
+  flex: 0 0 250px;
+  max-width: 250px;
+  scroll-snap-align: start;
+}
+
+/* Botões de Navegação dos Trilhos (Desktop) */
+.rail-nav-btn {
+  position: absolute;
+  top: 48%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-main);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all var(--transition-fast);
+  font-size: 1.35rem;
+  font-weight: bold;
+}
+
+.rail-nav-btn:hover {
+  background: var(--color-accent);
+  color: #FFFFFF;
+  border-color: var(--color-accent);
+  box-shadow: 0 6px 20px rgba(0, 102, 255, 0.35);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.rail-nav-prev {
+  left: -18px;
+}
+
+.rail-nav-next {
+  right: -18px;
+}
+
+/* Visões Especiais de Busca e Foco */
+.search-results-grid,
+.category-focus-grid {
+  grid-column: 1/-1;
+}
+
+.search-results-header,
+.category-focus-header {
+  grid-column: 1/-1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-results-header h4,
+.category-focus-header h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.15rem;
+}
+
+.search-results-sub,
+.category-focus-header p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.cat-focus-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cat-focus-icon {
+  font-size: 1.6rem;
+}
+
+.btn-clear-search-pill,
+.btn-back-streaming {
+  background: rgba(0, 102, 255, 0.08);
+  border: 1px solid rgba(0, 102, 255, 0.25);
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-clear-search-pill:hover,
+.btn-back-streaming:hover {
+  background: var(--color-accent);
+  color: #FFFFFF;
+}
+
+.search-empty-state {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.search-empty-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.search-empty-state h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.search-empty-state p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin: 0 auto 1.25rem;
+}
+
+.btn-reset-search {
+  background: var(--color-accent);
+  color: #FFFFFF;
+  border: none;
+  padding: 0.65rem 1.35rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-reset-search:hover {
+  background: var(--color-accent-hover);
+}
+
 .product-card {
   background: #FFFFFF;
   border: 1px solid var(--border-subtle);
@@ -2327,6 +2585,51 @@ a {
     font-size: 0.72rem;
     padding: 0.2rem 0.55rem;
   }
+
+  /* Streaming Rails Mobile */
+  .streaming-rails-container {
+    gap: 1.6rem;
+  }
+  .streaming-rail-header {
+    margin-bottom: 0.55rem;
+    padding: 0 0.15rem;
+  }
+  .rail-title-box h3 {
+    font-size: 1.05rem;
+  }
+  .rail-icon-badge {
+    font-size: 1.15rem;
+  }
+  .rail-subtitle-desktop {
+    display: none;
+  }
+  .rail-count-badge {
+    font-size: 0.65rem;
+    padding: 0.1rem 0.4rem;
+  }
+  .rail-see-all-btn {
+    font-size: 0.74rem;
+    padding: 0.25rem 0.4rem;
+  }
+  .streaming-rail-track {
+    gap: 0.65rem;
+    padding: 0.25rem 0.15rem 0.65rem;
+  }
+  .streaming-rail-track .product-card {
+    flex: 0 0 205px;
+    max-width: 205px;
+  }
+  .rail-nav-btn {
+    display: none; /* No mobile o swipe é 100% nativo por touch */
+  }
+  .search-results-header,
+  .category-focus-header {
+    padding: 0.75rem 0.85rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
@@ -2661,8 +2964,9 @@ a {
   .product-content {
     padding: 0.4rem;
   }
-  .product-title {
-    font-size: 0.72rem;
+  .streaming-rail-track .product-card {
+    flex: 0 0 185px;
+    max-width: 185px;
   }
   .payment-pills-grid {
     grid-template-columns: repeat(3, 1fr);

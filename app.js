@@ -83,65 +83,167 @@
     }
   }
 
+  const CATEGORIES = [
+    { id: 'escritorio', name: 'Escritório & Papelaria', icon: '📄', subtitle: 'Papéis A4 Suzano/Chamex, pastas, canetas e arquivos' },
+    { id: 'higiene', name: 'Higiene & Limpeza', icon: '🧼', subtitle: 'Papel toalha interfolha, sabonete 5L, álcool 70% e químicos' },
+    { id: 'descartaveis', name: 'Descartáveis & Embalagens', icon: '🥤', subtitle: 'Copos 180ml/50ml, bobinas plásticas e filmes' },
+    { id: 'copa', name: 'Copa & Cozinha', icon: '☕', subtitle: 'Café Bom Jesus, Melitta, açúcar, chás e mexedores' },
+    { id: 'epis', name: 'Segurança & EPIs', icon: '🦺', subtitle: 'Luvas látex/nitrílicas, máscaras cirúrgicas e proteção' },
+    { id: 'hospitalar', name: 'Linha Hospitalar', icon: '🏥', subtitle: 'Aventais descartáveis, lençóis de papel e biossegurança' },
+    { id: 'informatica', name: 'Informática & Conectividade', icon: '💻', subtitle: 'Pilhas alcalinas, toners, mouses e cabos' }
+  ];
+
+  function renderProductCard(product) {
+    const inCartCount = cart.filter(item => item.productId === product.id).reduce((sum, i) => sum + i.quantity, 0);
+    return `
+      <article class="product-card" data-id="${product.id}" onclick="window.universoApp.openProductModal('${product.id}')">
+        <div class="product-thumb-box">
+          ${product.badge ? `<span class="product-badge-tag">${product.badge}</span>` : ''}
+          <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='assets/images/produtos/folhas_report_a4.jpg'">
+        </div>
+        <div class="product-content">
+          <span class="product-category-label">${getCategoryName(product.category)}</span>
+          <h3 class="product-title" title="${product.name}">${product.name}</h3>
+          <p class="product-desc">${product.description}</p>
+          <div class="product-package-tag">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+            <span>${product.package}</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-quote-info">
+              <span class="quote-label">Condição PJ</span>
+              <span class="quote-value">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                Faturamento
+              </span>
+            </div>
+            <button type="button" class="btn-open-options ${inCartCount > 0 ? 'added' : ''}" onclick="event.stopPropagation(); window.universoApp.openProductModal('${product.id}')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                ${inCartCount > 0 
+                  ? '<polyline points="20 6 9 17 4 12"></polyline>' 
+                  : '<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>'}
+              </svg>
+              <span>${inCartCount > 0 ? `Na Lista (${inCartCount})` : 'Cotar Opções'}</span>
+            </button>
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
   // Renderizar catálogo
   function renderProducts() {
-    if (!filteredProducts.length) {
+    if (!allProducts.length) return;
+
+    // Cenário 1: Busca ativa por texto
+    if (searchTerm) {
+      if (!filteredProducts.length) {
+        productsGrid.className = 'products-grid';
+        productsGrid.innerHTML = `
+          <div class="search-empty-state">
+            <div class="search-empty-icon">🔍</div>
+            <h3>Nenhum produto encontrado para "${searchTerm}"</h3>
+            <p>Verifique os termos digitados ou mande sua lista personalizada de compras para o consultor.</p>
+            <button type="button" class="btn-reset-search" onclick="window.universoApp.clearSearch()">Limpar Busca</button>
+          </div>
+        `;
+        productsCountEl.textContent = '0 itens';
+        return;
+      }
+
+      productsCountEl.textContent = `${filteredProducts.length} produtos`;
+      productsGrid.className = 'products-grid search-results-grid';
       productsGrid.innerHTML = `
-        <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: #6C757D;">
-          <h3 style="color: #1C1E21; margin-bottom: 0.5rem;">Nenhum produto encontrado</h3>
-          <p style="font-size: 0.9rem;">Não encontramos nenhum item para "${searchTerm}". Tente outra busca ou envie sua lista personalizada.</p>
+        <div class="search-results-header">
+          <div>
+            <h4>Resultados da busca para: <strong>"${searchTerm}"</strong></h4>
+            <span class="search-results-sub">${filteredProducts.length} itens encontrados no catálogo</span>
+          </div>
+          <button type="button" class="btn-clear-search-pill" onclick="window.universoApp.clearSearch()">✕ Limpar Busca</button>
         </div>
+        ${filteredProducts.map(renderProductCard).join('')}
       `;
-      productsCountEl.textContent = '0 itens';
       return;
     }
 
-    productsCountEl.textContent = `${filteredProducts.length} itens`;
-
-    const html = filteredProducts.map(product => {
-      const inCartCount = cart.filter(item => item.productId === product.id).reduce((sum, i) => sum + i.quantity, 0);
-      return `
-        <article class="product-card" data-id="${product.id}" onclick="window.universoApp.openProductModal('${product.id}')">
-          <div class="product-thumb-box">
-            ${product.badge ? `<span class="product-badge-tag">${product.badge}</span>` : ''}
-            <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='assets/images/produtos/folhas_report_a4.jpg'">
-          </div>
-          <div class="product-content">
-            <span class="product-category-label">${getCategoryName(product.category)}</span>
-            <h3 class="product-title" title="${product.name}">${product.name}</h3>
-            <p class="product-desc">${product.description}</p>
-            <div class="product-package-tag">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-              </svg>
-              <span>${product.package}</span>
-            </div>
-            <div class="product-footer">
-              <div class="product-quote-info">
-                <span class="quote-label">Preço Corporativo</span>
-                <span class="quote-value">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  </svg>
-                  Sob Consulta
-                </span>
-              </div>
-              <button type="button" class="btn-open-options ${inCartCount > 0 ? 'added' : ''}" onclick="event.stopPropagation(); window.universoApp.openProductModal('${product.id}')">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  ${inCartCount > 0 
-                    ? '<polyline points="20 6 9 17 4 12"></polyline>' 
-                    : '<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>'}
-                </svg>
-                <span>${inCartCount > 0 ? `Na Lista (${inCartCount})` : 'Opções & Cotar'}</span>
-              </button>
+    // Cenário 2: Categoria isolada (quando o usuário clica em um departamento específico)
+    if (activeCategory !== 'todos') {
+      const catObj = CATEGORIES.find(c => c.id === activeCategory);
+      productsCountEl.textContent = `${filteredProducts.length} produtos`;
+      productsGrid.className = 'products-grid category-focus-grid';
+      productsGrid.innerHTML = `
+        <div class="category-focus-header">
+          <div class="cat-focus-info">
+            <span class="cat-focus-icon">${catObj ? catObj.icon : '📦'}</span>
+            <div>
+              <h3>${catObj ? catObj.name : 'Departamento'}</h3>
+              <p>${catObj ? catObj.subtitle : ''}</p>
             </div>
           </div>
-        </article>
+          <button type="button" class="btn-back-streaming" onclick="window.universoApp.setCategory('todos')">
+            ← Ver Todos os Departamentos (Trilhos Streaming)
+          </button>
+        </div>
+        ${filteredProducts.map(renderProductCard).join('')}
       `;
-    }).join('');
+      return;
+    }
 
-    productsGrid.innerHTML = html;
+    // Cenário 3: MODO STREAMING (Trilhos Horizontais de Categorias - Estilo Netflix B2B)
+    productsCountEl.textContent = `${allProducts.length} produtos`;
+    productsGrid.className = 'streaming-rails-container';
+
+    let railsHtml = '';
+    CATEGORIES.forEach(cat => {
+      const catProducts = allProducts.filter(p => p.category === cat.id);
+      if (!catProducts.length) return;
+
+      railsHtml += `
+        <section class="streaming-rail-section" id="rail-${cat.id}">
+          <div class="streaming-rail-header">
+            <div class="rail-title-box">
+              <span class="rail-icon-badge">${cat.icon}</span>
+              <div>
+                <h3 class="rail-title">${cat.name}</h3>
+                <span class="rail-subtitle-desktop">${cat.subtitle}</span>
+              </div>
+              <span class="rail-count-badge">${catProducts.length} itens</span>
+            </div>
+            <button type="button" class="rail-see-all-btn" onclick="window.universoApp.setCategory('${cat.id}')">
+              Ver todos (${catProducts.length}) <span>&rarr;</span>
+            </button>
+          </div>
+
+          <div class="streaming-rail-wrapper">
+            <button type="button" class="rail-nav-btn rail-nav-prev" onclick="window.universoApp.scrollRail('track-${cat.id}', -1)" aria-label="Anterior">‹</button>
+            <div class="streaming-rail-track" id="track-${cat.id}">
+              ${catProducts.map(renderProductCard).join('')}
+            </div>
+            <button type="button" class="rail-nav-btn rail-nav-next" onclick="window.universoApp.scrollRail('track-${cat.id}', 1)" aria-label="Próximo">›</button>
+          </div>
+        </section>
+      `;
+    });
+
+    productsGrid.innerHTML = railsHtml;
+  }
+
+  function scrollRail(trackId, direction) {
+    const track = document.getElementById(trackId);
+    if (!track) return;
+    const scrollAmount = track.clientWidth * 0.75 * direction;
+    track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }
+
+  function clearSearch() {
+    if (searchInput) searchInput.value = '';
+    searchTerm = '';
+    applyFilters();
   }
 
   function getCategoryName(cat) {
@@ -171,8 +273,10 @@
 
   function setCategory(cat, btn) {
     activeCategory = cat;
-    categoryBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+    categoryBtns.forEach(b => {
+      if (b.dataset.category === cat) b.classList.add('active');
+      else b.classList.remove('active');
+    });
 
     const catLabels = {
       'todos': 'Todos os Materiais & Suprimentos',
@@ -186,6 +290,11 @@
     };
     categoryTitleEl.textContent = catLabels[cat] || 'Catálogo de Produtos';
     applyFilters();
+
+    if (!btn && cat !== 'todos') {
+      const catalogEl = document.getElementById('catalog-section');
+      if (catalogEl) catalogEl.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   // ==========================================================================
@@ -670,7 +779,10 @@
     nextOfferSlide,
     prevOfferSlide,
     goToOfferSlide,
-    addDirectOffer
+    addDirectOffer,
+    scrollRail,
+    clearSearch,
+    setCategory
   };
 
   if (document.readyState === 'loading') {
