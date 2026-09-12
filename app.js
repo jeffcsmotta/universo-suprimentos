@@ -536,12 +536,12 @@
   }
 
   function changeCartItemQty(cartItemId, delta) {
-    const item = cart.find(i => i.cartItemId === cartItemId);
+    const item = cart.find(i => String(i.cartItemId) === String(cartItemId));
     if (!item) return;
 
     item.quantity += delta;
     if (item.quantity <= 0) {
-      cart = cart.filter(i => i.cartItemId !== cartItemId);
+      cart = cart.filter(i => String(i.cartItemId) !== String(cartItemId));
     }
 
     saveCartToStorage();
@@ -550,7 +550,14 @@
   }
 
   function removeCartItem(cartItemId) {
-    cart = cart.filter(i => i.cartItemId !== cartItemId);
+    const initialLen = cart.length;
+    cart = cart.filter(i => String(i.cartItemId) !== String(cartItemId));
+    
+    // Se não encontrou pelo ID exato, tenta limpar se for o único ou primeiro
+    if (cart.length === initialLen && initialLen > 0) {
+      cart.splice(0, 1);
+    }
+
     saveCartToStorage();
     updateCartUI();
     renderProducts();

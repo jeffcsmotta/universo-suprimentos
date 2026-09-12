@@ -3064,7 +3064,22 @@ a {
     height: 17px;
   }
   .header-actions {
-    gap: 0.4rem;
+    gap: 0.35rem;
+  }
+  .btn-clear-cart-global {
+    height: 36px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.74rem;
+    gap: 0.3rem;
+    border-radius: var(--radius-sm);
+  }
+  .btn-repeat-quote {
+    height: 36px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.74rem;
+  }
+  .btn-upload-list {
+    display: none; /* No mobile, economiza espaço precioso no topo para o carrinho e limpar */
   }
   .btn-cart-trigger {
     height: 36px;
