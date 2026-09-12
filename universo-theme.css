@@ -3430,24 +3430,7 @@ a {
     padding: 0.65rem 0 3.5rem;
   }
   .catalog-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 0.75rem;
-  }
-  .catalog-header-title h2 {
-    font-size: 1.15rem;
-    line-height: 1.2;
-    margin-bottom: 0.1rem;
-  }
-  .catalog-header-title p {
-    font-size: 0.74rem;
-  }
-  .catalog-counter-badge {
-    font-size: 0.72rem;
-    padding: 0.2rem 0.55rem;
+    display: none !important; /* Oculta os banners brancos redundantes de seção no mobile */
   }
 
   /* Streaming Rails & Category Mini-Heros Mobile */
